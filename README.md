@@ -17,6 +17,7 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 
 ## Info
 
++ Python 3.10.4 used
 + per info sul bot (group id,
   ecc): https://api.telegram.org/botXXX/getUpdates
 + https://github.com/python-telegram-bot/python-telegram-bot/wiki/
