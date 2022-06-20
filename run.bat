@@ -1,3 +1,3 @@
 @echo off
-"C:\dev\FoldoBot\venv\Scripts\python.exe" "bot.py"
+"C:\Users\Simon\AppData\Local\Programs\Python\Python310\python.exe" "bot.py"
 pause
