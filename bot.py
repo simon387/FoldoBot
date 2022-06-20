@@ -24,7 +24,7 @@ logging.basicConfig(
 )
 
 
-async def unknown(update: Update, context: CallbackContext.DEFAULT_TYPE):
+async def unknown(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=constants.UNKNOWN)
 
 
