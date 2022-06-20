@@ -24,7 +24,7 @@ logging.basicConfig(
 )
 
 
-async def unknown(update: Update, context: CallbackContext):
+async def unknown_command(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=constants.UNKNOWN)
 
 
@@ -124,6 +124,6 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('tts_en', tts_en))
 	application.add_handler(CommandHandler('tts_es', tts_es))
 	application.add_handler(CommandHandler('tts_it', tts_it))
-	application.add_handler(MessageHandler(filters.COMMAND, unknown))
+	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	get_version()
 	application.run_polling(stop_signals=None)
