@@ -4,7 +4,7 @@ config = configparser.RawConfigParser()
 config.read('config.properties')
 
 TOKEN = config.get('secrets', 'telegram.token')
-UNKNOWN = "Questo comando non esite!"
+UNKNOWN_COMMAND_RESPONSE = "Questo comando non esite!"
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
 RANDOM_MEME_URL = "https://meme-api.herokuapp.com/gimme"
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + config.get('secrets', 'api.giphy.com.key') + "&rating=pg-13&limit=1"
