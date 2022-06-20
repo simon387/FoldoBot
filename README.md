@@ -42,8 +42,9 @@ random_gif - random gif
 random_daoc - random daoc sound
 random_ts - random teamspeak audio
 random_aoe - random Age Of Empires sound
-play_taunt - plays specific taunt; e.g.: play_taunt r1
-list_taunts - list all taunts of the bot
+random_dipre - random dipre trash audio
+play - plays specific taunt; e.g.: play r1
+list_play - list all taunts of the bot
 tts_en - play tts in english; e.g: tts_en hi
 tts_it - play tts in italian; e.g: tts_it ciao
 tts_es - play tts in spanish; e.g: tts_es hola

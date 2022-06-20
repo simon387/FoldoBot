@@ -573,3 +573,5 @@ TS_ARRAY = ["b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1",
             "15- Airina Bakayoko - HWP 5", "16- Airina Bakayoko - La regola del cretino",
             "17- Airina Bakayoko - Darkage Medley Live", "18- Airina Bakayoko - Io e la mia skald Airina",
             "19- Airina Bakayoko - HWP 6", "20- Airina Bakayoko - BONUS TRACK - Sono tre anni", "tg", ]
+DIPRE_ARRAY = ["cosachaquesto", "dipre_intro", "emigrare", "monella", "monellasample", "neanche1kgdivagina",
+               "neanche1kgsample", "sononervoso", "stocazzo", "stocazzosample", ]
