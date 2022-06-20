@@ -3,11 +3,13 @@ import configparser
 config = configparser.RawConfigParser()
 config.read('config.properties')
 
-TOKEN = config.get('secrets', 'telegram.token')
+SECRETS = 'secrets'
+TOKEN = config.get(SECRETS, 'telegram.token')
 UNKNOWN_COMMAND_RESPONSE = "Questo comando non esite!"
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
 RANDOM_MEME_URL = "https://meme-api.herokuapp.com/gimme"
-RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + config.get('secrets', 'api.giphy.com.key') + "&rating=pg-13&limit=1"
+GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
+RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
 SIMONECELIA_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
 MP3 = ".mp3"
 ERROR_PARAMETER_NEEDED = "Questo comando ha bisogno di un parametro!"
