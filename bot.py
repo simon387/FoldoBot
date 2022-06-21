@@ -34,7 +34,7 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 	json_object = json.loads(response.text)
 	bestemmia = json_object["bestemmia"]
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
-	await tts(update, context, cons.IT, bestemmia)
+	await tts(update, context, bestemmia)
 	await play(update, context)
 
 
@@ -81,20 +81,16 @@ async def list_play(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=cons.TS_BOT_WEB_LINK)
 
 
-async def tts_en(update: Update, context: CallbackContext):
-	await tts(update, context, cons.EN, ' '.join(context.args))
-
-
-async def tts_it(update: Update, context: CallbackContext):
-	await tts(update, context, cons.IT, ' '.join(context.args))
-
-
-async def tts_es(update: Update, context: CallbackContext):
-	await tts(update, context, cons.ES, ' '.join(context.args))
-
-
-async def tts(update: Update, context: CallbackContext, language, text):
-	text = text.strip()
+async def tts(update: Update, context: CallbackContext, bestemmia=''):
+	cmd = update.message.text
+	language = cons.IT
+	if cmd.startswith('/tts_es'):
+		language = cons.ES
+	elif cmd.startswith('/tts_en'):
+		language = cons.EN
+	text = ' '.join(context.args).strip()
+	if '' != bestemmia:
+		text = bestemmia
 	if "" == text:
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=cons.ERROR_PARAMETER_NEEDED)
 	else:
@@ -120,9 +116,9 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('random_dipre', random_taunt))
 	application.add_handler(CommandHandler('play', play))
 	application.add_handler(CommandHandler('list_play', list_play))
-	application.add_handler(CommandHandler('tts_en', tts_en))
-	application.add_handler(CommandHandler('tts_es', tts_es))
-	application.add_handler(CommandHandler('tts_it', tts_it))
+	application.add_handler(CommandHandler('tts_en', tts))
+	application.add_handler(CommandHandler('tts_es', tts))
+	application.add_handler(CommandHandler('tts_it', tts))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	get_version()
 	application.run_polling(stop_signals=None)
