@@ -51,29 +51,22 @@ async def random_gif(update: Update, context: CallbackContext):
 	await context.bot.sendDocument(chat_id=update.effective_chat.id, document=mp4)
 
 
-async def random_daoc(update: Update, context: CallbackContext):
-	audio = cons.SIMONECELIA_DATA_URL + random.choice(cons.DAOC_ARRAY) + cons.MP3
-	await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
-
-
-async def random_ts(update: Update, context: CallbackContext):
-	audio = cons.SIMONECELIA_DATA_URL + random.choice(cons.TS_ARRAY) + cons.MP3
-	await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
-
-
-async def random_aoe(update: Update, context: CallbackContext):
-	audio = cons.SIMONECELIA_DATA_URL + random.choice(cons.AOE_ARRAY) + cons.MP3
-	await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
-
-
-async def random_dipre(update: Update, context: CallbackContext):
-	audio = cons.SIMONECELIA_DATA_URL + random.choice(cons.DIPRE_ARRAY) + cons.MP3
+async def random_taunt(update: Update, context: CallbackContext):
+	taunt_array = cons.DAOC_ARRAY
+	text = update.message.text
+	if text.startswith('/random_ts'):
+		taunt_array = cons.TS_ARRAY
+	elif text.startswith('/random_aoe'):
+		taunt_array = cons.AOE_ARRAY
+	elif text.startswith('/random_dipre'):
+		taunt_array = cons.DIPRE_ARRAY
+	audio = cons.SIMONECELIA_DATA_URL + random.choice(taunt_array) + cons.MP3
 	await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
 
 
 async def play(update: Update, context: CallbackContext):
 	taunt = ' '.join(context.args).strip()
-	if "" == taunt:
+	if '' == taunt:
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=cons.ERROR_PARAMETER_NEEDED)
 	else:
 		if taunt in cons.DAOC_ARRAY or taunt in cons.TS_ARRAY or taunt in cons.AOE_ARRAY or taunt in cons.DIPRE_ARRAY:
@@ -121,10 +114,10 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
 	application.add_handler(CommandHandler('random_meme', random_meme))
 	application.add_handler(CommandHandler('random_gif', random_gif))
-	application.add_handler(CommandHandler('random_daoc', random_daoc))
-	application.add_handler(CommandHandler('random_ts', random_ts))
-	application.add_handler(CommandHandler('random_aoe', random_aoe))
-	application.add_handler(CommandHandler('random_dipre', random_dipre))
+	application.add_handler(CommandHandler('random_daoc', random_taunt))
+	application.add_handler(CommandHandler('random_ts', random_taunt))
+	application.add_handler(CommandHandler('random_aoe', random_taunt))
+	application.add_handler(CommandHandler('random_dipre', random_taunt))
 	application.add_handler(CommandHandler('play', play))
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler('tts_en', tts_en))
