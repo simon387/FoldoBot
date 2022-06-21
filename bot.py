@@ -82,16 +82,17 @@ async def list_play(update: Update, context: CallbackContext):
 
 
 async def tts(update: Update, context: CallbackContext, bestemmia=''):
-	cmd = update.message.text
 	language = cons.IT
-	if cmd.startswith('/tts_es'):
-		language = cons.ES
-	elif cmd.startswith('/tts_en'):
-		language = cons.EN
-	text = ' '.join(context.args).strip()
 	if '' != bestemmia:
 		text = bestemmia
-	if "" == text:
+	else:
+		cmd = update.message.text
+		if cmd.startswith('/tts_es'):
+			language = cons.ES
+		elif cmd.startswith('/tts_en'):
+			language = cons.EN
+		text = ' '.join(context.args).strip()
+	if '' == text:
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=cons.ERROR_PARAMETER_NEEDED)
 	else:
 		myobj = gTTS(text=text, lang=language, slow=False)
