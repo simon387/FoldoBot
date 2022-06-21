@@ -18,6 +18,13 @@ MP3_TEMP_FILE = "sample.mp3"
 EN = "en"
 IT = "it"
 ES = "es"
+SLASH = "/"
+TTS_EN = "tts_en"
+TTS_IT = "tts_it"
+TTS_ES = "tts_es"
+RANDOM_TS = "random_ts"
+RANDOM_AOE = "random_aoe"
+RANDOM_DIPRE = "random_dipre"
 TS_BOT_WEB_LINK = "www.simonecelia.it/ts-bot-web"
 MOSCONI_ARRAY = ["m1", "m11", "m12", "m15", "m16", "m19", "m2", "m20", "m21", "m23", "m25", "m27", "m29", "m3", "m30",
                  "m31", "m33", "m34", "m35", "m36", "m38", "m4", "m41", "m47", "m48", "m49", "m5", "m51", "m52", "m6",
