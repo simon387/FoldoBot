@@ -8,7 +8,7 @@ from gtts import gTTS
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, filters, MessageHandler
 
-import constants as cn
+import constants as c
 
 logging.basicConfig(
 	handlers=[
@@ -25,12 +25,12 @@ logging.basicConfig(
 
 
 async def unknown_command(update: Update, context: CallbackContext):
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=cn.UNKNOWN_COMMAND_RESPONSE)
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_RESPONSE)
 
 
 async def random_bestemmia(update: Update, context: CallbackContext):
-	context.args.append(random.choice(cn.MOSCONI_ARRAY))
-	response = requests.get(cn.RANDOM_BESTEMMIA_URL)
+	context.args.append(random.choice(c.MOSCONI_ARRAY))
+	response = requests.get(c.RANDOM_BESTEMMIA_URL)
 	json_object = json.loads(response.text)
 	bestemmia = json_object["bestemmia"]
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
@@ -39,65 +39,63 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 
 
 async def random_meme(update: Update, context: CallbackContext):
-	response = requests.get(cn.RANDOM_MEME_URL)
+	response = requests.get(c.RANDOM_MEME_URL)
 	json_object = json.loads(response.text)
 	await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=json_object["url"])
 
 
 async def random_gif(update: Update, context: CallbackContext):
-	response = requests.get(cn.RANDOM_GIF_URL)
+	response = requests.get(c.RANDOM_GIF_URL)
 	json_object = json.loads(response.text)
 	mp4 = json_object["data"]["images"]["original_mp4"]["mp4"]
 	await context.bot.sendDocument(chat_id=update.effective_chat.id, document=mp4)
 
 
 async def random_taunt(update: Update, context: CallbackContext):
-	taunt_array = cn.DAOC_ARRAY
+	taunt_array = c.DAOC_ARRAY
 	text = update.message.text
-	if text.startswith(cn.SLASH + cn.RANDOM_TS):
-		taunt_array = cn.TS_ARRAY
-	elif text.startswith(cn.SLASH + cn.RANDOM_AOE):
-		taunt_array = cn.AOE_ARRAY
-	elif text.startswith(cn.SLASH + cn.RANDOM_DIPRE):
-		taunt_array = cn.DIPRE_ARRAY
-	audio = cn.SIMONECELIA_DATA_URL + random.choice(taunt_array) + cn.MP3
+	if text.startswith(c.SLASH + c.RANDOM_TS):
+		taunt_array = c.TS_ARRAY
+	elif text.startswith(c.SLASH + c.RANDOM_AOE):
+		taunt_array = c.AOE_ARRAY
+	elif text.startswith(c.SLASH + c.RANDOM_DIPRE):
+		taunt_array = c.DIPRE_ARRAY
+	audio = c.SIMONECELIA_DATA_URL + random.choice(taunt_array) + c.MP3
 	await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
 
 
 async def play(update: Update, context: CallbackContext):
-	taunt = ' '.join(context.args).strip()
-	if '' == taunt:
-		await context.bot.send_message(chat_id=update.effective_chat.id, text=cn.ERROR_PARAMETER_NEEDED)
+	taunt = c.SPACE.join(context.args).strip()
+	if c.EMPTY == taunt:
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
 	else:
-		if taunt in cn.DAOC_ARRAY or taunt in cn.TS_ARRAY or taunt in cn.AOE_ARRAY or taunt in cn.DIPRE_ARRAY:
-			audio = cn.SIMONECELIA_DATA_URL + taunt + cn.MP3
+		if taunt in c.DAOC_ARRAY or taunt in c.TS_ARRAY or taunt in c.AOE_ARRAY or taunt in c.DIPRE_ARRAY:
+			audio = c.SIMONECELIA_DATA_URL + taunt + c.MP3
 			await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
 		else:
-			await context.bot.send_message(chat_id=update.effective_chat.id, text=cn.TAUNT_NOT_FOUND)
+			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TAUNT_NOT_FOUND)
 			logging.error("Taunt not found, input text = " + taunt)
 
 
 async def list_play(update: Update, context: CallbackContext):
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=cn.TS_BOT_WEB_LINK)
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TS_BOT_WEB_LINK)
 
 
-async def tts(update: Update, context: CallbackContext, bestemmia=''):
-	language = cn.IT
-	if '' != bestemmia:
-		text = bestemmia
-	else:
+async def tts(update: Update, context: CallbackContext, text=''):
+	language = c.IT
+	if c.EMPTY == text:
 		cmd = update.message.text
-		if cmd.startswith(cn.SLASH + cn.TTS_ES):
-			language = cn.ES
-		elif cmd.startswith(cn.SLASH + cn.TTS_EN):
-			language = cn.EN
-		text = ' '.join(context.args).strip()
-	if '' == text:
-		await context.bot.send_message(chat_id=update.effective_chat.id, text=cn.ERROR_PARAMETER_NEEDED)
+		if cmd.startswith(c.SLASH + c.TTS_ES):
+			language = c.ES
+		elif cmd.startswith(c.SLASH + c.TTS_EN):
+			language = c.EN
+		text = c.SPACE.join(context.args).strip()
+	if c.EMPTY == text:
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
 	else:
 		myobj = gTTS(text=text, lang=language, slow=False)
-		myobj.save(cn.MP3_TEMP_FILE)
-		await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=open(cn.MP3_TEMP_FILE, "rb"))
+		myobj.save(c.MP3_TEMP_FILE)
+		await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, "rb"))
 
 
 def get_version():
@@ -107,14 +105,14 @@ def get_version():
 
 
 if __name__ == '__main__':
-	application = ApplicationBuilder().token(cn.TOKEN).build()
+	application = ApplicationBuilder().token(c.TOKEN).build()
 	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
 	application.add_handler(CommandHandler('random_meme', random_meme))
 	application.add_handler(CommandHandler('random_gif', random_gif))
-	application.add_handler(CommandHandler(['random_daoc', cn.RANDOM_TS, cn.RANDOM_AOE, cn.RANDOM_DIPRE], random_taunt))
+	application.add_handler(CommandHandler([c.RANDOM_DAOC, c.RANDOM_TS, c.RANDOM_AOE, c.RANDOM_DIPRE], random_taunt))
 	application.add_handler(CommandHandler('play', play))
 	application.add_handler(CommandHandler('list_play', list_play))
-	application.add_handler(CommandHandler([cn.TTS_EN, cn.TTS_ES, cn.TTS_IT], tts))
+	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	get_version()
 	application.run_polling(stop_signals=None)
