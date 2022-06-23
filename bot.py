@@ -8,7 +8,7 @@ from gtts import gTTS
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, filters, MessageHandler
 
-from src.util import constants as c
+import constants as c
 
 logging.basicConfig(
 	handlers=[
