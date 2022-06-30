@@ -12,6 +12,7 @@ GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
 SIMONECELIA_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
 MP3 = ".mp3"
+RB = "rb"
 ERROR_PARAMETER_NEEDED = "Questo comando ha bisogno di un parametro!"
 TAUNT_NOT_FOUND = "Taunt inesistente!"
 MP3_TEMP_FILE = "sample.mp3"
