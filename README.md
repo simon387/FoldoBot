@@ -48,6 +48,7 @@ list_play - list all taunts of the bot
 tts_en - play tts in english; e.g: tts_en hi
 tts_it - play tts in italian; e.g: tts_it ciao
 tts_es - play tts in spanish; e.g: tts_es hola
+dipre - play dipre in a mayor situation
 ```
 
 ## Config file format

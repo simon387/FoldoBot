@@ -95,7 +95,11 @@ async def tts(update: Update, context: CallbackContext, text=''):
 	else:
 		myobj = gTTS(text=text, lang=language, slow=False)
 		myobj.save(c.MP3_TEMP_FILE)
-		await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, "rb"))
+		await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
+
+
+async def dipre(update: Update, context: CallbackContext):
+	await context.bot.send_video(chat_id=update.effective_chat.id, video=open("assets/dipre.mp4", c.RB))
 
 
 def get_version():
@@ -106,6 +110,7 @@ def get_version():
 
 if __name__ == '__main__':
 	application = ApplicationBuilder().token(c.TOKEN).build()
+	application.add_handler(CommandHandler('dipre', dipre))
 	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
 	application.add_handler(CommandHandler('random_meme', random_meme))
 	application.add_handler(CommandHandler('random_gif', random_gif))
