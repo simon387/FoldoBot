@@ -61,6 +61,7 @@ api.giphy.com.key=YYY
 
 ```
 
-## run from detached ssh
+## Random util commands
 
-```nohup python bot.py &```
++ Run from detached ssh: ```nohup python bot.py &```
++ Show python processes: ```ps -ef | grep python```
