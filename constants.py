@@ -558,7 +558,8 @@ AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15"
              "905", "906", "907", "909", "91", "910", "911", "912", "913", "914", "915", "916", "917", "918", "919",
              "92", "920", "921", "922", "923", "924", "925", "926", "927", "928", "929", "93", "930", "931", "932",
              "933", "934", "935", "94", "95", "96", "97", "98", "99", "999", ]
-TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1", "c2", "c3", "c4", "cane", "ciao",
+TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1", "c2", "c3", "c4",
+            "ciao",
             "ciuf1", "ciuf2", "ciuf3", "ciuf4", "ciuf5", "ciuf6", "ciuf7", "corona", "d_ginoilsecondino", "d1", "d10",
             "d2", "d3", "d4", "d4tutto", "d5", "d6", "d7", "d8", "d9", "diego", "dominating", "double_kill", "escort",
             "f1", "ferdi1", "g1", "g10", "g2", "g3", "g4", "g5", "g6", "g7_gramas_divaga", "g7", "g8", "g9", "h1",
@@ -586,6 +587,6 @@ TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl"
             "13- Airina Bakayoko - Il Supertrollone (tm)", "14- Airina Bakayoko - Fatti piu in la",
             "15- Airina Bakayoko - HWP 5", "16- Airina Bakayoko - La regola del cretino",
             "17- Airina Bakayoko - Darkage Medley Live", "18- Airina Bakayoko - Io e la mia skald Airina",
-            "19- Airina Bakayoko - HWP 6", "20- Airina Bakayoko - BONUS TRACK - Sono tre anni", "tg", ]
+            "19- Airina Bakayoko - HWP 6", "20- Airina Bakayoko - BONUS TRACK - Sono tre anni", "tg", "cane", ]
 DIPRE_ARRAY = ["cosachaquesto", "dipre_intro", "emigrare", "monella", "monellasample", "neanche1kgdivagina",
                "neanche1kgsample", "sononervoso", "stocazzo", "stocazzosample", ]
