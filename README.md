@@ -25,10 +25,9 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 
 ## Setup dev
 
-+ ```pip install python-telegram-bot --upgrade```
-+ ```pip install python-telegram-bot -U --pre```
-+ Telegram web Z is better, dunno why
++ ```pip install python-telegram-bot --upgrade``` or ```pip install python-telegram-bot -U --pre```
 + ```pip install gtts```
++ web client: Telegram web Z is better, dunno why
 
 ## Setup BotFather
 
