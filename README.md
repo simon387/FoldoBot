@@ -60,3 +60,7 @@ telegram.token=XXX
 api.giphy.com.key=YYY
 
 ```
+
+## run from detached ssh
+
+```nohup python bot.py &```
