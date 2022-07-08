@@ -5,12 +5,14 @@ config.read('config.properties')
 
 SECRETS = 'secrets'
 TOKEN = config.get(SECRETS, 'telegram.token')
+TELEGRAM_GROUP_ID = config.get(SECRETS, 'telegram.group.id')
+GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
+#
 UNKNOWN_COMMAND_RESPONSE = "Questo comando non esite!"
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
 RANDOM_MEME_URL = "https://meme-api.herokuapp.com/gimme"
-GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
-SIMONECELIA_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
+TS_BOT_WEB_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
 MP3 = ".mp3"
 RB = "rb"
 ERROR_PARAMETER_NEEDED = "Questo comando ha bisogno di un parametro!"
@@ -559,7 +561,7 @@ AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15"
              "92", "920", "921", "922", "923", "924", "925", "926", "927", "928", "929", "93", "930", "931", "932",
              "933", "934", "935", "94", "95", "96", "97", "98", "99", "999", ]
 TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1", "c2", "c3", "c4",
-            "ciao",
+            "ciao", "venerdi",
             "ciuf1", "ciuf2", "ciuf3", "ciuf4", "ciuf5", "ciuf6", "ciuf7", "corona", "d_ginoilsecondino", "d1", "d10",
             "d2", "d3", "d4", "d4tutto", "d5", "d6", "d7", "d8", "d9", "diego", "dominating", "double_kill", "escort",
             "f1", "ferdi1", "g1", "g10", "g2", "g3", "g4", "g5", "g6", "g7_gramas_divaga", "g7", "g8", "g9", "h1",

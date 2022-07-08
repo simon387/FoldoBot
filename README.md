@@ -57,6 +57,7 @@ dipre - play dipre in a mayor situation
 [secrets]
 telegram.token=XXX
 api.giphy.com.key=YYY
+telegram.group.id=-ZZZ
 
 ```
 

@@ -1,6 +1,6 @@
 .idea
 lazygit.bat
-*.mp3
+sample.mp3
 *.log
 *.log.*
 *.properties
