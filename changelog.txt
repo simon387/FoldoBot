@@ -1,1 +1,4 @@
+Version 1.1.0
+- added dai che è venerdì
+
 Version 1.0.0

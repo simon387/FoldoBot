@@ -1,8 +1,10 @@
 import json
 import logging
 import random
+from datetime import time
 from logging.handlers import RotatingFileHandler
 
+import pytz
 import requests
 from gtts import gTTS
 from telegram import Update
@@ -20,7 +22,7 @@ logging.basicConfig(
 		logging.StreamHandler()
 	],
 	format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-	level=logging.DEBUG
+	level=logging.INFO
 )
 
 
@@ -60,8 +62,8 @@ async def random_taunt(update: Update, context: CallbackContext):
 		taunt_array = c.AOE_ARRAY
 	elif text.startswith(c.SLASH + c.RANDOM_DIPRE):
 		taunt_array = c.DIPRE_ARRAY
-	audio = c.SIMONECELIA_DATA_URL + random.choice(taunt_array) + c.MP3
-	await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
+	audio = c.TS_BOT_WEB_DATA_URL + random.choice(taunt_array) + c.MP3
+	await context.bot.send_audio(chat_id=update.effective_chat.id, audio=audio)
 
 
 async def play(update: Update, context: CallbackContext):
@@ -70,8 +72,8 @@ async def play(update: Update, context: CallbackContext):
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
 	else:
 		if taunt in c.DAOC_ARRAY or taunt in c.TS_ARRAY or taunt in c.AOE_ARRAY or taunt in c.DIPRE_ARRAY:
-			audio = c.SIMONECELIA_DATA_URL + taunt + c.MP3
-			await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=audio)
+			audio = c.TS_BOT_WEB_DATA_URL + taunt + c.MP3
+			await context.bot.send_audio(chat_id=update.effective_chat.id, audio=audio)
 		else:
 			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TAUNT_NOT_FOUND)
 			logging.error("Taunt not found, input text = " + taunt)
@@ -95,11 +97,15 @@ async def tts(update: Update, context: CallbackContext, text=''):
 	else:
 		myobj = gTTS(text=text, lang=language, slow=False)
 		myobj.save(c.MP3_TEMP_FILE)
-		await context.bot.sendAudio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
+		await context.bot.send_audio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
 
 
 async def dipre(update: Update, context: CallbackContext):
 	await context.bot.send_video(chat_id=update.effective_chat.id, video=open("assets/dipre.mp4", c.RB))
+
+
+async def dai_che_e_venerdi(context: CallbackContext):
+	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio=open("assets/venerdi.mp3", c.RB))
 
 
 def get_version():
@@ -119,5 +125,6 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
+	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	get_version()
 	application.run_polling(stop_signals=None)
