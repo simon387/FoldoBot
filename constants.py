@@ -2,7 +2,7 @@ import configparser
 
 config = configparser.RawConfigParser()
 config.read('config.properties')
-
+#
 SECRETS = 'secrets'
 TOKEN = config.get(SECRETS, 'telegram.token')
 TELEGRAM_GROUP_ID = config.get(SECRETS, 'telegram.group.id')
@@ -33,10 +33,14 @@ RANDOM_AOE = "random_aoe"
 RANDOM_DIPRE = "random_dipre"
 RANDOM_DAOC = "random_daoc"
 TS_BOT_WEB_LINK = "www.simonecelia.it/ts-bot-web"
+AMAZON_MESSAGE = "+ https://t.me/offertepromozioniscontibaby\n+ https://t.me/scontioffertepromozionicuracorpo\n" + \
+                 "+ https://t.me/offertescontipromozionielettro\n+ https://t.me/schedevideooffertepromozioni"
+#
 MOSCONI_ARRAY = ["m1", "m11", "m12", "m15", "m16", "m19", "m2", "m20", "m21", "m23", "m25", "m27", "m29", "m3", "m30",
                  "m31", "m33", "m34", "m35", "m36", "m38", "m4", "m41", "m47", "m48", "m49", "m5", "m51", "m52", "m6",
                  "m7", "m8", "m9", "macheoh", "mconfusione", "mcorti", "mcorti2", "mcrescente", "mdiocanecorti",
                  "mdistratto", "mnessuno", "mnonlosoio", "mnotizia", "mosconi", ]
+#
 DAOC_ARRAY = ["AC1A_01a", "AC1A_02a", "AC1A_02b", "AC1A_02c", "AC1A_02d", "AC1A_03a", "AC1A_03b", "ac1a_04a",
               "AC1A_04b", "AC1A_04c", "ac1a_04d", "AC1B_02a", "AC1B_02b", "AC1B_02c", "AC1B_02d", "adrghit", "adrghit2",
               "adrghit3", "afnbatt", "afnbdie", "afnbhit", "afnbhit2", "afnbhit3", "afncatt", "afncdie", "afnchit",
@@ -531,6 +535,7 @@ DAOC_ARRAY = ["AC1A_01a", "AC1A_02a", "AC1A_02b", "AC1A_02c", "AC1A_02d", "AC1A_
               "xaphan_pain02-01", "xaphan_pain02-02", "xaphan_pain02-03", "xaphan_pain03-01", "xaphan_pain03-02",
               "xaphan_pain03-03", "zomatt", "zombie_moan_01", "zombie_moan_02", "zombie_moan_03", "zombie_moan_04",
               "zombie_moan_05", "zombie_moan_06", "zombie_moan_07", "zombie_moan_08", "zomdie", "zomhit", "zomhit2", ]
+#
 AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15", "150", "151", "152", "153", "155",
              "156", "157", "158", "159", "16", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169",
              "17", "170", "171", "172", "173", "174", "18", "19", "190", "191", "192", "193", "2", "20", "201", "202",
@@ -560,6 +565,7 @@ AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15"
              "905", "906", "907", "909", "91", "910", "911", "912", "913", "914", "915", "916", "917", "918", "919",
              "92", "920", "921", "922", "923", "924", "925", "926", "927", "928", "929", "93", "930", "931", "932",
              "933", "934", "935", "94", "95", "96", "97", "98", "99", "999", ]
+#
 TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1", "c2", "c3", "c4",
             "ciao", "venerdi",
             "ciuf1", "ciuf2", "ciuf3", "ciuf4", "ciuf5", "ciuf6", "ciuf7", "corona", "d_ginoilsecondino", "d1", "d10",
@@ -590,5 +596,6 @@ TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl"
             "15- Airina Bakayoko - HWP 5", "16- Airina Bakayoko - La regola del cretino",
             "17- Airina Bakayoko - Darkage Medley Live", "18- Airina Bakayoko - Io e la mia skald Airina",
             "19- Airina Bakayoko - HWP 6", "20- Airina Bakayoko - BONUS TRACK - Sono tre anni", "tg", "cane", ]
+#
 DIPRE_ARRAY = ["cosachaquesto", "dipre_intro", "emigrare", "monella", "monellasample", "neanche1kgdivagina",
                "neanche1kgsample", "sononervoso", "stocazzo", "stocazzosample", ]
