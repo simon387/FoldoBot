@@ -5,3 +5,4 @@ sample.mp3
 *.log.*
 *.properties
 __pycache__
+nohup.out
