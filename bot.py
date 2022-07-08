@@ -26,8 +26,8 @@ logging.basicConfig(
 )
 
 
-async def unknown_command(update: Update, context: CallbackContext):
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_RESPONSE)
+async def dipre(update: Update, context: CallbackContext):
+	await context.bot.send_video(chat_id=update.effective_chat.id, video=open("assets/dipre.mp4", c.RB))
 
 
 async def random_bestemmia(update: Update, context: CallbackContext):
@@ -100,8 +100,12 @@ async def tts(update: Update, context: CallbackContext, text=''):
 		await context.bot.send_audio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
 
 
-async def dipre(update: Update, context: CallbackContext):
-	await context.bot.send_video(chat_id=update.effective_chat.id, video=open("assets/dipre.mp4", c.RB))
+async def unknown_command(update: Update, context: CallbackContext):
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_RESPONSE)
+
+
+async def amazon(update: Update, context: CallbackContext):
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.AMAZON_MESSAGE)
 
 
 async def dai_che_e_venerdi(context: CallbackContext):
@@ -124,6 +128,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('play', play))
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
+	application.add_handler(CommandHandler('amazon', amazon))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	get_version()
