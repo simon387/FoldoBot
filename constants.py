@@ -567,7 +567,7 @@ AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15"
              "933", "934", "935", "94", "95", "96", "97", "98", "99", "999", ]
 #
 TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1", "c2", "c3", "c4",
-            "ciao", "venerdi",
+            "ciao", "venerdi", "vamos",
             "ciuf1", "ciuf2", "ciuf3", "ciuf4", "ciuf5", "ciuf6", "ciuf7", "corona", "d_ginoilsecondino", "d1", "d10",
             "d2", "d3", "d4", "d4tutto", "d5", "d6", "d7", "d8", "d9", "diego", "dominating", "double_kill", "escort",
             "f1", "ferdi1", "g1", "g10", "g2", "g3", "g4", "g5", "g6", "g7_gramas_divaga", "g7", "g8", "g9", "h1",
