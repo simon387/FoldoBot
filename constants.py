@@ -6,6 +6,7 @@ config.read('config.properties')
 SECRETS = 'secrets'
 TOKEN = config.get(SECRETS, 'telegram.token')
 TELEGRAM_GROUP_ID = config.get(SECRETS, 'telegram.group.id')
+TELEGRAM_DEVELOPER_CHAT_ID = config.get(SECRETS, 'telegram.developer.chat.id')
 GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
 #
 UNKNOWN_COMMAND_RESPONSE = "Questo comando non esite!"
