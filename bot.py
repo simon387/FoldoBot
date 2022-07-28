@@ -5,8 +5,8 @@ import os
 import random
 import sys
 import time as time_os
-from datetime import time
 import traceback
+from datetime import time
 from logging.handlers import RotatingFileHandler
 
 import pytz
@@ -42,7 +42,7 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 	json_object = json.loads(response.text)
 	bestemmia = json_object["bestemmia"]
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
-	await tts(update, context, bestemmia)
+	await tts(update, context, bestemmia.lower())
 	await play(update, context)
 
 
