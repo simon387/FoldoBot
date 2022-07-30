@@ -1,3 +1,7 @@
+Version 1.1.5
+- added more logs
+- fix message length error
+
 Version 1.1.4
 - fix tts bestemmie
 
