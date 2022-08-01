@@ -1,3 +1,6 @@
+Version 1.1.6
+- added parameter type on function log_bot_event
+
 Version 1.1.5
 - added more logs
 - fix message length error

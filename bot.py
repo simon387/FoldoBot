@@ -128,7 +128,7 @@ async def dai_che_e_venerdi(context: CallbackContext):
 	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio=open("assets/venerdi.mp3", c.RB))
 
 
-def log_bot_event(update: Update, method_name):
+def log_bot_event(update: Update, method_name: str):
 	message = update.message.text
 	first_name = update.effective_user.first_name
 	user_id = update.effective_user.id
