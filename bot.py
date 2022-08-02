@@ -33,10 +33,12 @@ logging.basicConfig(
 
 
 async def dipre(update: Update, context: CallbackContext):
+	log_bot_event(update, 'dipre')
 	await context.bot.send_video(chat_id=update.effective_chat.id, video=open("assets/dipre.mp4", c.RB))
 
 
 async def random_bestemmia(update: Update, context: CallbackContext):
+	log_bot_event(update, 'random_bestemmia')
 	context.args.append(random.choice(c.MOSCONI_ARRAY))
 	response = requests.get(c.RANDOM_BESTEMMIA_URL)
 	json_object = json.loads(response.text)
@@ -47,12 +49,14 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 
 
 async def random_meme(update: Update, context: CallbackContext):
+	log_bot_event(update, 'random_meme')
 	response = requests.get(c.RANDOM_MEME_URL)
 	json_object = json.loads(response.text)
 	await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=json_object["url"])
 
 
 async def random_gif(update: Update, context: CallbackContext):
+	log_bot_event(update, 'random_gif')
 	response = requests.get(c.RANDOM_GIF_URL)
 	json_object = json.loads(response.text)
 	mp4 = json_object["data"]["images"]["original_mp4"]["mp4"]
@@ -60,6 +64,7 @@ async def random_gif(update: Update, context: CallbackContext):
 
 
 async def random_taunt(update: Update, context: CallbackContext):
+	log_bot_event(update, 'random_taunt')
 	taunt_array = c.DAOC_ARRAY
 	text = update.message.text
 	if text.startswith(c.SLASH + c.RANDOM_TS):
@@ -73,6 +78,7 @@ async def random_taunt(update: Update, context: CallbackContext):
 
 
 async def play(update: Update, context: CallbackContext):
+	log_bot_event(update, 'play')
 	taunt = c.SPACE.join(context.args).strip()
 	if c.EMPTY == taunt:
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
@@ -86,10 +92,12 @@ async def play(update: Update, context: CallbackContext):
 
 
 async def list_play(update: Update, context: CallbackContext):
+	log_bot_event(update, 'list_play')
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TS_BOT_WEB_LINK)
 
 
 async def tts(update: Update, context: CallbackContext, text=''):
+	log_bot_event(update, 'tts')
 	language = c.IT
 	if c.EMPTY == text:
 		cmd = update.message.text
@@ -107,15 +115,24 @@ async def tts(update: Update, context: CallbackContext, text=''):
 
 
 async def unknown_command(update: Update, context: CallbackContext):
+	log_bot_event(update, 'unknown_command')
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_RESPONSE)
 
 
 async def amazon(update: Update, context: CallbackContext):
+	log_bot_event(update, 'amazon')
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.AMAZON_MESSAGE)
 
 
 async def dai_che_e_venerdi(context: CallbackContext):
 	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio=open("assets/venerdi.mp3", c.RB))
+
+
+def log_bot_event(update: Update, method_name: str):
+	message = update.message.text
+	first_name = update.effective_user.first_name
+	user_id = update.effective_user.id
+	logging.info("[method=" + method_name + '] Got this message from ' + first_name + "[id=" + str(user_id) + "]" + ": " + message)
 
 
 # Log the error and send a telegram message to notify the developer. Attemp to restart the bot too
@@ -137,6 +154,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 		f"<pre>context.user_data = {html.escape(str(context.user_data))}</pre>\n\n"
 		f"<pre>{html.escape(tb_string)}</pre>"
 	)
+	message = message[:9500]  # truncate to prevent error
 	# Finally, send the message
 	await context.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=message, parse_mode=ParseMode.HTML)
 	# Restart the bot
