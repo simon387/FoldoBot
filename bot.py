@@ -175,7 +175,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('random_meme', random_meme))
 	application.add_handler(CommandHandler('random_gif', random_gif))
 	application.add_handler(CommandHandler([c.RANDOM_DAOC, c.RANDOM_TS, c.RANDOM_AOE, c.RANDOM_DIPRE], random_taunt))
-	application.add_handler(CommandHandler('play', play))
+	application.add_handler(CommandHandler(['play', 'esegui'], play))
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
 	application.add_handler(CommandHandler('amazon', amazon))
