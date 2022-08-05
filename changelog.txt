@@ -1,3 +1,6 @@
+Version 1.1.9
+- fix tags on error handler
+
 Version 1.1.8
 - fix message length error
 
