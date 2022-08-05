@@ -154,7 +154,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 		f"<pre>context.user_data = {html.escape(str(context.user_data))}</pre>\n\n"
 		f"<pre>{html.escape(tb_string)}</pre>"
 	)
-	message = message[:9500]  # truncate to prevent error
+	message = message[:4400]  # truncate to prevent error
 	# Finally, send the message
 	await context.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=message, parse_mode=ParseMode.HTML)
 	# Restart the bot
