@@ -154,7 +154,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 		f"<pre>context.user_data = {html.escape(str(context.user_data))}</pre>\n\n"
 		f"<pre>{html.escape(tb_string)}</pre>"
 	)
-	message = message[:4400]  # truncate to prevent error
+	message = message[:4300]  # truncate to prevent error
 	if message.count('</pre>') % 2 != 0:
 		message += '</pre>'
 	# Finally, send the message
