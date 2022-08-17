@@ -129,10 +129,10 @@ async def dai_che_e_venerdi(context: CallbackContext):
 
 
 def log_bot_event(update: Update, method_name: str):
-	message = update.message.text
-	first_name = update.effective_user.first_name
-	user_id = update.effective_user.id
-	logging.info("[method=" + method_name + '] Got this message from ' + first_name + "[id=" + str(user_id) + "]" + ": " + message)
+	msg = update.message.text
+	user = update.effective_user.first_name
+	uid = update.effective_user.id
+	logging.info("[method=" + method_name + '] Got this message from ' + user + "[id=" + str(uid) + "]" + ": " + msg)
 
 
 # Log the error and send a telegram message to notify the developer. Attemp to restart the bot too
