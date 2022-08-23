@@ -43,7 +43,6 @@ random_ts - random teamspeak audio
 random_aoe - random Age Of Empires sound
 random_dipre - random dipre trash audio
 play - plays specific taunt; e.g.: play r1
-esegui - uguale a play
 list_play - list all taunts of the bot
 tts_en - play tts in english; e.g: tts_en hi
 tts_it - play tts in italian; e.g: tts_it ciao
