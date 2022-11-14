@@ -1,3 +1,6 @@
+Version 1.2.1
+- fixed stop message
+
 Version 1.2.0
 - updated readme
 - added start message on post_init
