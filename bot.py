@@ -14,7 +14,7 @@ import requests
 from gtts import gTTS
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler
+from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler, Application
 
 import constants as c
 
@@ -128,6 +128,15 @@ async def dai_che_e_venerdi(context: CallbackContext):
 	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio=open("assets/venerdi.mp3", c.RB))
 
 
+async def post_init(app: Application):
+	version = get_version()
+	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
+
+
+async def post_shutdown(app: Application):
+	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STOP_MESSAGE, parse_mode=ParseMode.HTML)
+
+
 def log_bot_event(update: Update, method_name: str):
 	msg = update.message.text
 	user = update.effective_user.first_name
@@ -168,10 +177,11 @@ def get_version():
 	with open("changelog.txt") as f:
 		firstline = f.readline().rstrip()
 	logging.info("Starting FoldoBot, " + firstline)
+	return firstline
 
 
 if __name__ == '__main__':
-	application = ApplicationBuilder().token(c.TOKEN).build()
+	application = ApplicationBuilder().token(c.TOKEN).post_init(post_init).post_shutdown(post_shutdown).build()
 	application.add_handler(CommandHandler('dipre', dipre))
 	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
 	application.add_handler(CommandHandler('random_meme', random_meme))
@@ -184,5 +194,4 @@ if __name__ == '__main__':
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	application.add_error_handler(error_handler)
-	get_version()
-	application.run_polling(stop_signals=None)
+	application.run_polling(allowed_updates=Update.ALL_TYPES)

@@ -1,3 +1,11 @@
+Version 1.2.0
+- updated readme
+- added start message on post_init
+- added stop message on post_shutdown (do not working!)
+- added proxy for random bestemmia for better production deploy compatibility
+- added request tests
+- edited run_polling
+
 Version 1.1.12
 - rollback 1.1.7
 
