@@ -1,6 +1,6 @@
 # FoldoBot
 
-Personal Telegram Spam Bot
+Telegram Bot used for my Telegram friend's group; it spams fun things.
 
 ## BotFather
 
