@@ -1,10 +1,13 @@
+Version 1.2.2
+- improved shutdown mechanism
+
 Version 1.2.1
-- fixed stop message
+- fixed shutdown message
 
 Version 1.2.0
 - updated readme
 - added start message on post_init
-- added stop message on post_shutdown (do not working!)
+- added shutdown message on post_shutdown (do not working!)
 - added proxy for random bestemmia for better production deploy compatibility
 - added request tests
 - edited run_polling
