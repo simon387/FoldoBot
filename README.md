@@ -53,6 +53,7 @@ tts_it - play tts in italian; e.g: tts_it ciao
 tts_es - play tts in spanish; e.g: tts_es hola
 dipre - play dipre in a mayor situation
 amazon - show amazon friendly channels
+version - show bot's version
 ```
 
 ## Config file format

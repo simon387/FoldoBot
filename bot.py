@@ -125,13 +125,17 @@ async def amazon(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.AMAZON_MESSAGE)
 
 
+async def version(update: Update, context: CallbackContext):
+	log_bot_event(update, 'version')
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=get_version())
+
+
 async def dai_che_e_venerdi(context: CallbackContext):
 	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio=open("assets/venerdi.mp3", c.RB))
 
 
 async def post_init(app: Application):
-	version = get_version()
-	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
+	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + get_version(), parse_mode=ParseMode.HTML)
 
 
 async def post_shutdown(app: Application):
@@ -192,6 +196,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
 	application.add_handler(CommandHandler('amazon', amazon))
+	application.add_handler(CommandHandler('version', version))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	application.add_error_handler(error_handler)
