@@ -11,7 +11,7 @@ GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
 #
 UNKNOWN_COMMAND_RESPONSE = "Questo comando non esite!"
 STARTUP_MESSAGE = "FoldoBot started! "
-STOP_MESSAGE = "FoldoBot stopped!"
+SHUTDOWN_MESSAGE = "FoldoBot stopped!"
 RANDOM_BESTEMMIA_URL = "https://www.simonecelia.it/random_bestemmia.php"
 RANDOM_MEME_URL = "https://meme-api.herokuapp.com/gimme"
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"

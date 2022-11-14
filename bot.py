@@ -17,6 +17,7 @@ from telegram.constants import ParseMode
 from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler, Application
 
 import constants as c
+from MyApp import MyApp
 
 logging.basicConfig(
 	handlers=[
@@ -134,7 +135,7 @@ async def post_init(app: Application):
 
 
 async def post_shutdown(app: Application):
-	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STOP_MESSAGE, parse_mode=ParseMode.HTML)
+	logging.info("Shutting down, bot id=" + str(app.bot.id))
 
 
 def log_bot_event(update: Update, method_name: str):
@@ -181,7 +182,7 @@ def get_version():
 
 
 if __name__ == '__main__':
-	application = ApplicationBuilder().token(c.TOKEN).post_init(post_init).post_shutdown(post_shutdown).build()
+	application = ApplicationBuilder().token(c.TOKEN).application_class(MyApp).post_init(post_init).post_shutdown(post_shutdown).build()
 	application.add_handler(CommandHandler('dipre', dipre))
 	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
 	application.add_handler(CommandHandler('random_meme', random_meme))
