@@ -28,6 +28,10 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 + ```pip install gtts```
 + web client: Telegram web Z is better, dunno why
 
+## Test
+
+Tested and deployed on https://www.pythonanywhere.com and it works!
+
 ## Setup BotFather
 
 1. ```/setcommands```
@@ -52,6 +56,8 @@ amazon - show amazon friendly channels
 ```
 
 ## Config file format
+
+Name: ```config.properties```
 
 ```
 [secrets]
