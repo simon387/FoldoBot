@@ -136,6 +136,7 @@ async def dai_che_e_venerdi(context: CallbackContext):
 
 async def post_init(app: Application):
 	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + get_version(), parse_mode=ParseMode.HTML)
+	await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + get_version(), parse_mode=ParseMode.HTML)
 
 
 async def post_shutdown(app: Application):
