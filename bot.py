@@ -125,8 +125,8 @@ async def amazon(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.AMAZON_MESSAGE)
 
 
-async def version(update: Update, context: CallbackContext):
-	log_bot_event(update, 'version')
+async def send_version(update: Update, context: CallbackContext):
+	log_bot_event(update, 'send_version')
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=get_version())
 
 
@@ -135,8 +135,10 @@ async def dai_che_e_venerdi(context: CallbackContext):
 
 
 async def post_init(app: Application):
-	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + get_version(), parse_mode=ParseMode.HTML)
-	await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + get_version(), parse_mode=ParseMode.HTML)
+	version = get_version()
+	logging.info("Starting FoldoBot, " + version)
+	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
+	await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 
 
 async def post_shutdown(app: Application):
@@ -182,7 +184,6 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 def get_version():
 	with open("changelog.txt") as f:
 		firstline = f.readline().rstrip()
-	logging.info("Starting FoldoBot, " + firstline)
 	return firstline
 
 
@@ -197,7 +198,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
 	application.add_handler(CommandHandler('amazon', amazon))
-	application.add_handler(CommandHandler('version', version))
+	application.add_handler(CommandHandler('version', send_version))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	application.add_error_handler(error_handler)
