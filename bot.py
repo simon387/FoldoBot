@@ -127,7 +127,7 @@ async def amazon(update: Update, context: CallbackContext):
 
 async def send_version(update: Update, context: CallbackContext):
 	log_bot_event(update, 'send_version')
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=get_version())
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=get_version() + c.VERSION_MESSAGE)
 
 
 async def dai_che_e_venerdi(context: CallbackContext):
