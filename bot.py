@@ -1,6 +1,6 @@
 import html
 import json
-import logging
+import logging as log
 import os
 import random
 import sys
@@ -19,17 +19,17 @@ from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, Co
 import constants as c
 from MyApp import MyApp
 
-logging.basicConfig(
+log.basicConfig(
 	handlers=[
 		RotatingFileHandler(
 			'FoldoBot.log',
 			maxBytes=10240000,
 			backupCount=5
 		),
-		logging.StreamHandler()
+		log.StreamHandler()
 	],
 	format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-	level=logging.INFO
+	level=log.INFO
 )
 
 
@@ -89,7 +89,7 @@ async def play(update: Update, context: CallbackContext):
 			await context.bot.send_audio(chat_id=update.effective_chat.id, audio=audio)
 		else:
 			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TAUNT_NOT_FOUND)
-			logging.error("Taunt not found, input text = " + taunt)
+			log.error("Taunt not found, input text = " + taunt)
 
 
 async def list_play(update: Update, context: CallbackContext):
@@ -120,8 +120,8 @@ async def unknown_command(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_RESPONSE)
 
 
-async def amazon(update: Update, context: CallbackContext):
-	log_bot_event(update, 'amazon')
+async def send_amazon(update: Update, context: CallbackContext):
+	log_bot_event(update, 'send_amazon')
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.AMAZON_MESSAGE)
 
 
@@ -136,26 +136,26 @@ async def dai_che_e_venerdi(context: CallbackContext):
 
 async def post_init(app: Application):
 	version = get_version()
-	logging.info("Starting FoldoBot, " + version)
+	log.info("Starting FoldoBot, " + version)
 	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 	await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 
 
 async def post_shutdown(app: Application):
-	logging.info("Shutting down, bot id=" + str(app.bot.id))
+	log.info("Shutting down, bot id=" + str(app.bot.id))
 
 
 def log_bot_event(update: Update, method_name: str):
 	msg = update.message.text
 	user = update.effective_user.first_name
 	uid = update.effective_user.id
-	logging.info("[method=" + method_name + '] Got this message from ' + user + "[id=" + str(uid) + "]" + ": " + msg)
+	log.info("[method=" + method_name + '] Got this message from ' + user + "[id=" + str(uid) + "]" + ": " + msg)
 
 
 # Log the error and send a telegram message to notify the developer. Attemp to restart the bot too
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
 	# Log the error before we do anything else, so we can see it even if something breaks.
-	logging.error(msg="Exception while handling an update:", exc_info=context.error)
+	log.error(msg="Exception while handling an update:", exc_info=context.error)
 	# traceback.format_exception returns the usual python message about an exception, but as a
 	# list of strings rather than a single string, so we have to join them together.
 	tb_list = traceback.format_exception(None, context.error, context.error.__traceback__)
@@ -197,7 +197,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('play', play))
 	application.add_handler(CommandHandler('list_play', list_play))
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
-	application.add_handler(CommandHandler('amazon', amazon))
+	application.add_handler(CommandHandler('amazon', send_amazon))
 	application.add_handler(CommandHandler('version', send_version))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
