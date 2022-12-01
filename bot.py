@@ -110,12 +110,9 @@ async def tts(update: Update, context: CallbackContext, text=''):
 	if c.EMPTY == text:
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
 	else:
-		try:
-			myobj = gTTS(text=text, lang=language, slow=False)
-			myobj.save(c.MP3_TEMP_FILE)
-			await context.bot.send_audio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
-		except RuntimeError:
-			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_GTTS)
+		myobj = gTTS(text=text, lang=language, slow=False)
+		myobj.save(c.MP3_TEMP_FILE)
+		await context.bot.send_audio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
 
 
 async def unknown_command(update: Update, context: CallbackContext):
