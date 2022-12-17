@@ -14,7 +14,7 @@ import requests
 from gtts import gTTS
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler, Application
+from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler, Application, AIORateLimiter
 
 import constants as c
 from MyApp import MyApp
@@ -82,19 +82,19 @@ async def play(update: Update, context: CallbackContext):
 	log_bot_event(update, 'play')
 	taunt = c.SPACE.join(context.args).strip()
 	if c.EMPTY == taunt:
-		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED_MESSAGE)
 	else:
 		if taunt in c.DAOC_ARRAY or taunt in c.TS_ARRAY or taunt in c.AOE_ARRAY or taunt in c.DIPRE_ARRAY:
 			audio = c.TS_BOT_WEB_DATA_URL + taunt + c.MP3
 			await context.bot.send_audio(chat_id=update.effective_chat.id, audio=audio)
 		else:
-			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TAUNT_NOT_FOUND)
+			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TAUNT_NOT_FOUND_MESSAGE)
 			log.error("Taunt not found, input text = " + taunt)
 
 
 async def list_play(update: Update, context: CallbackContext):
 	log_bot_event(update, 'list_play')
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TS_BOT_WEB_LINK)
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TS_BOT_WEB_URL)
 
 
 async def tts(update: Update, context: CallbackContext, text=''):
@@ -108,7 +108,7 @@ async def tts(update: Update, context: CallbackContext, text=''):
 			language = c.EN
 		text = c.SPACE.join(context.args).strip()
 	if c.EMPTY == text:
-		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED)
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_PARAMETER_NEEDED_MESSAGE)
 	else:
 		myobj = gTTS(text=text, lang=language, slow=False)
 		myobj.save(c.MP3_TEMP_FILE)
@@ -117,7 +117,7 @@ async def tts(update: Update, context: CallbackContext, text=''):
 
 async def unknown_command(update: Update, context: CallbackContext):
 	log_bot_event(update, 'unknown_command')
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_RESPONSE)
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_MESSAGE)
 
 
 async def send_amazon(update: Update, context: CallbackContext):
@@ -188,7 +188,13 @@ def get_version():
 
 
 if __name__ == '__main__':
-	application = ApplicationBuilder().token(c.TOKEN).application_class(MyApp).post_init(post_init).post_shutdown(post_shutdown).build()
+	application = ApplicationBuilder() \
+		.token(c.TOKEN) \
+		.application_class(MyApp) \
+		.post_init(post_init) \
+		.post_shutdown(post_shutdown) \
+		.rate_limiter(AIORateLimiter(max_retries=c.AIO_RATE_LIMITER_MAX_RETRIES)) \
+		.build()
 	application.add_handler(CommandHandler('dipre', dipre))
 	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
 	application.add_handler(CommandHandler('random_meme', random_meme))
