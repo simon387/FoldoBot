@@ -9,19 +9,24 @@ TELEGRAM_GROUP_ID = config.get(SECRETS, 'telegram.group.id')
 TELEGRAM_DEVELOPER_CHAT_ID = config.get(SECRETS, 'telegram.developer.chat.id')
 GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
 #
-UNKNOWN_COMMAND_RESPONSE = "Questo comando non esite!"
+UNKNOWN_COMMAND_MESSAGE = "This command doesn't exist!"
 STARTUP_MESSAGE = "FoldoBot started! "
 STOP_MESSAGE = "FoldoBot stopped!"
 VERSION_MESSAGE = " - more info on https://github.com/simon387/FoldoBot/blob/master/changelog.txt"
+ERROR_PARAMETER_NEEDED_MESSAGE = "This command needs a parameter!"
+ERROR_GTTS_MESSAGE = "Error on Google Text-to-Speech!"
+TAUNT_NOT_FOUND_MESSAGE = "Taunt not found!"
+#
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
 RANDOM_MEME_URL = "https://meme-api.herokuapp.com/gimme"
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
 TS_BOT_WEB_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
+TS_BOT_WEB_URL = "www.simonecelia.it/ts-bot-web"
+#
+AIO_RATE_LIMITER_MAX_RETRIES = 10
+#
 MP3 = ".mp3"
 RB = "rb"
-ERROR_PARAMETER_NEEDED = "Questo comando ha bisogno di un parametro!"
-ERROR_GTTS = "Error on Google Text-to-Speech!"
-TAUNT_NOT_FOUND = "Taunt inesistente!"
 MP3_TEMP_FILE = "sample.mp3"
 EN = "en"
 IT = "it"
@@ -37,7 +42,7 @@ RANDOM_TS = "random_ts"
 RANDOM_AOE = "random_aoe"
 RANDOM_DIPRE = "random_dipre"
 RANDOM_DAOC = "random_daoc"
-TS_BOT_WEB_LINK = "www.simonecelia.it/ts-bot-web"
+#
 AMAZON_MESSAGE = "+ https://t.me/offertepromozioniscontibaby\n+ https://t.me/scontioffertepromozionicuracorpo\n" + \
                  "+ https://t.me/offertescontipromozionielettro\n+ https://t.me/schedevideooffertepromozioni"
 #
