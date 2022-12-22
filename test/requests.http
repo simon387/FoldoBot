@@ -1,6 +1,3 @@
 ###
 GET https://bestemmie.org/api/random/
 
-
-###
-GET https://www.simonecelia.it/random_bestemmia.php
