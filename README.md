@@ -67,6 +67,8 @@ telegram.token=XXX
 api.giphy.com.key=YYY
 telegram.group.id=-ZZZ
 telegram.developer.chat.id=WWW
+[application]
+ignore.warnings=true
 ```
 
 ## Random util commands
