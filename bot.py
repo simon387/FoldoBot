@@ -6,6 +6,7 @@ import random
 import sys
 import time as time_os
 import traceback
+import warnings
 from datetime import time
 from logging.handlers import RotatingFileHandler
 
@@ -206,6 +207,8 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('amazon', send_amazon))
 	application.add_handler(CommandHandler('version', send_version))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
+	if c.IGNORE_WARNINGS == 'true':
+		warnings.filterwarnings("ignore")
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	application.add_error_handler(error_handler)
 	application.run_polling(allowed_updates=Update.ALL_TYPES)
