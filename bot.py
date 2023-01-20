@@ -30,7 +30,7 @@ log.basicConfig(
 		log.StreamHandler()
 	],
 	format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-	level=log.INFO
+	level=c.LOG_LEVEL
 )
 
 
