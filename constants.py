@@ -1,15 +1,24 @@
 import configparser
+import logging
 
 config = configparser.RawConfigParser()
-config.read('config.properties')
+config.read("config.properties")
 #
-SECRETS = 'secrets'
-TOKEN = config.get(SECRETS, 'telegram.token')
-TELEGRAM_GROUP_ID = config.get(SECRETS, 'telegram.group.id')
-TELEGRAM_DEVELOPER_CHAT_ID = config.get(SECRETS, 'telegram.developer.chat.id')
-GIPHY_KEY = config.get(SECRETS, 'api.giphy.com.key')
+SECRETS = "secrets"
+TOKEN = config.get(SECRETS, "telegram.token")
+TELEGRAM_GROUP_ID = config.get(SECRETS, "telegram.group.id")
+TELEGRAM_DEVELOPER_CHAT_ID = config.get(SECRETS, "telegram.developer.chat.id")
+GIPHY_KEY = config.get(SECRETS, "api.giphy.com.key")
 #
-IGNORE_WARNINGS = config.get('application', 'ignore.warnings')
+APPLICATION = "application"
+IGNORE_WARNINGS = config.get(APPLICATION, "ignore.warnings")
+case = config.get(APPLICATION, "log.level")
+if case == "info":
+	LOG_LEVEL = logging.INFO
+elif case == "debug":
+	LOG_LEVEL = logging.DEBUG
+else:
+	LOG_LEVEL = logging.DEBUG
 #
 UNKNOWN_COMMAND_MESSAGE = "This command doesn't exist!"
 STARTUP_MESSAGE = "FoldoBot started! "
@@ -34,8 +43,8 @@ EN = "en"
 IT = "it"
 ES = "es"
 SLASH = "/"
-EMPTY = ''
-SPACE = ' '
+EMPTY = ""
+SPACE = " "
 TTS_ = "tts_"
 TTS_EN = TTS_ + EN
 TTS_IT = TTS_ + IT
