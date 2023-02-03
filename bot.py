@@ -196,10 +196,10 @@ if __name__ == '__main__':
 		.post_shutdown(post_shutdown) \
 		.rate_limiter(AIORateLimiter(max_retries=c.AIO_RATE_LIMITER_MAX_RETRIES)) \
 		.build()
-	application.add_handler(CommandHandler('dipre', dipre))
-	application.add_handler(CommandHandler('random_bestemmia', random_bestemmia))
-	application.add_handler(CommandHandler('random_meme', random_meme))
-	application.add_handler(CommandHandler('random_gif', random_gif))
+	application.add_handler(CommandHandler(c.DIPRE_MAYOR, dipre))
+	application.add_handler(CommandHandler(c.RANDOM_BESTEMMIA, random_bestemmia))
+	application.add_handler(CommandHandler(c.RANDOM_MEME, random_meme))
+	application.add_handler(CommandHandler(c.RANDOM_GIF, random_gif))
 	application.add_handler(CommandHandler([c.RANDOM_DAOC, c.RANDOM_TS, c.RANDOM_AOE, c.RANDOM_DIPRE], random_taunt))
 	application.add_handler(CommandHandler('play', play))
 	application.add_handler(CommandHandler('list_play', list_play))

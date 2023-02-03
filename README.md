@@ -40,19 +40,19 @@ Tested and deployed on https://www.pythonanywhere.com and it works!
 3. copy paste this:
 
 ```
-random_bestemmia - bestemmia random
-random_meme - meme random
-random_gif - random gif
-random_daoc - random daoc sound
-random_ts - random teamspeak audio
-random_aoe - random Age Of Empires sound
-random_dipre - random dipre trash audio
+bestemmia - bestemmia random
+meme - meme random
+gif - random gif
+daoc - random daoc sound
+ts - random teamspeak audio
+aoe - random Age Of Empires sound
+dipre - random dipre trash audio
 play - plays specific taunt; e.g.: play r1
 list_play - list all taunts of the bot
 tts_en - play tts in english; e.g: tts_en hi
 tts_it - play tts in italian; e.g: tts_it ciao
 tts_es - play tts in spanish; e.g: tts_es hola
-dipre - play dipre in a mayor situation
+dipre_mayor - play dipre in a mayor situation
 amazon - show amazon friendly channels
 version - show bot's version
 ```
@@ -77,3 +77,7 @@ log.level=info
 
 + Run from detached ssh: ```nohup python bot.py &```
 + Show python processes: ```ps -ef | grep python```
+
+## Usefull Links
+
++ https://github.com/D3vd/Meme_Api

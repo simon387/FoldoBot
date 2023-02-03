@@ -29,7 +29,7 @@ ERROR_GTTS_MESSAGE = "Error on Google Text-to-Speech!"
 TAUNT_NOT_FOUND_MESSAGE = "Taunt not found!"
 #
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
-RANDOM_MEME_URL = "https://meme-api.herokuapp.com/gimme"
+RANDOM_MEME_URL = "https://meme-api.com/gimme"
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
 TS_BOT_WEB_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
 TS_BOT_WEB_URL = "www.simonecelia.it/ts-bot-web"
@@ -49,10 +49,14 @@ TTS_ = "tts_"
 TTS_EN = TTS_ + EN
 TTS_IT = TTS_ + IT
 TTS_ES = TTS_ + ES
-RANDOM_TS = "random_ts"
-RANDOM_AOE = "random_aoe"
-RANDOM_DIPRE = "random_dipre"
-RANDOM_DAOC = "random_daoc"
+RANDOM_TS = "ts"
+RANDOM_AOE = "aoe"
+RANDOM_DIPRE = "dipre"
+RANDOM_DAOC = "daoc"
+RANDOM_BESTEMMIA = "bestemmia"
+RANDOM_MEME = "meme"
+RANDOM_GIF = "gif"
+DIPRE_MAYOR = "dipre_mayor"
 #
 AMAZON_MESSAGE = "+ https://t.me/offertepromozioniscontibaby\n+ https://t.me/scontioffertepromozionicuracorpo\n" + \
                  "+ https://t.me/offertescontipromozionielettro\n+ https://t.me/schedevideooffertepromozioni"
