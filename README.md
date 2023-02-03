@@ -81,3 +81,4 @@ log.level=info
 ## Usefull Links
 
 + https://github.com/D3vd/Meme_Api
++ https://support.anaconda.com/hc/en-us/requests/
