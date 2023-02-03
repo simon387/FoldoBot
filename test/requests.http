@@ -1,3 +1,10 @@
-###
+### get random bestemmia
 GET https://bestemmie.org/api/random/
 
+### post bestemmia
+POST https://bestemmie.org/api/bestemmie
+Content-Type: application/json
+
+{
+  "bestemmia": "Dio cane odio la gente con il mac"
+}
