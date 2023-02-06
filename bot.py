@@ -50,7 +50,8 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
 		await tts(update, context, bestemmia.lower())
 		await play(update, context)
-	except Exception:
+	except Exception as ex:
+		log.error(ex)
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_BESTEMMIA_MESSAGE)
 
 
@@ -61,7 +62,8 @@ async def random_meme(update: Update, context: CallbackContext):
 		response = requests.get(c.RANDOM_MEME_URL)
 		json_object = json.loads(response.text)
 		await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=json_object["url"])
-	except Exception:
+	except Exception as ex:
+		log.error(ex)
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_MEME_MESSAGE)
 
 
@@ -73,7 +75,8 @@ async def random_gif(update: Update, context: CallbackContext):
 		json_object = json.loads(response.text)
 		mp4 = json_object["data"]["images"]["original_mp4"]["mp4"]
 		await context.bot.sendDocument(chat_id=update.effective_chat.id, document=mp4)
-	except Exception:
+	except Exception as ex:
+		log.error(ex)
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_GIF_MESSAGE)
 
 
