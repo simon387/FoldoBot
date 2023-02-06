@@ -43,26 +43,35 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_bestemmia')
 	context.args.append(random.choice(c.MOSCONI_ARRAY))
 	response = requests.get(c.RANDOM_BESTEMMIA_URL)
-	json_object = json.loads(response.text)
-	bestemmia = json_object["bestemmia"]
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
-	await tts(update, context, bestemmia.lower())
-	await play(update, context)
+	if response.ok:
+		json_object = json.loads(response.text)
+		bestemmia = json_object["bestemmia"]
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
+		await tts(update, context, bestemmia.lower())
+		await play(update, context)
+	else:
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_BESTEMMIA_MESSAGE)
 
 
 async def random_meme(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_meme')
 	response = requests.get(c.RANDOM_MEME_URL)
-	json_object = json.loads(response.text)
-	await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=json_object["url"])
+	if response.ok:
+		json_object = json.loads(response.text)
+		await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=json_object["url"])
+	else:
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_MEME_MESSAGE)
 
 
 async def random_gif(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_gif')
 	response = requests.get(c.RANDOM_GIF_URL)
-	json_object = json.loads(response.text)
-	mp4 = json_object["data"]["images"]["original_mp4"]["mp4"]
-	await context.bot.sendDocument(chat_id=update.effective_chat.id, document=mp4)
+	if response.ok:
+		json_object = json.loads(response.text)
+		mp4 = json_object["data"]["images"]["original_mp4"]["mp4"]
+		await context.bot.sendDocument(chat_id=update.effective_chat.id, document=mp4)
+	else:
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_GIF_MESSAGE)
 
 
 async def random_taunt(update: Update, context: CallbackContext):
@@ -89,7 +98,7 @@ async def play(update: Update, context: CallbackContext):
 			audio = c.TS_BOT_WEB_DATA_URL + taunt + c.MP3
 			await context.bot.send_audio(chat_id=update.effective_chat.id, audio=audio)
 		else:
-			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.TAUNT_NOT_FOUND_MESSAGE)
+			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_TAUNT_NOT_FOUND_MESSAGE)
 			log.error("Taunt not found, input text = " + taunt)
 
 
@@ -118,7 +127,7 @@ async def tts(update: Update, context: CallbackContext, text=''):
 
 async def unknown_command(update: Update, context: CallbackContext):
 	log_bot_event(update, 'unknown_command')
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.UNKNOWN_COMMAND_MESSAGE)
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_UNKNOWN_COMMAND_MESSAGE)
 
 
 async def send_amazon(update: Update, context: CallbackContext):

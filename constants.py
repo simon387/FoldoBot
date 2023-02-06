@@ -3,15 +3,16 @@ import logging
 
 config = configparser.RawConfigParser()
 config.read("config.properties")
-#
+# secrets
 SECRETS = "secrets"
 TOKEN = config.get(SECRETS, "telegram.token")
 TELEGRAM_GROUP_ID = config.get(SECRETS, "telegram.group.id")
 TELEGRAM_DEVELOPER_CHAT_ID = config.get(SECRETS, "telegram.developer.chat.id")
 GIPHY_KEY = config.get(SECRETS, "api.giphy.com.key")
-#
+# app settings
 APPLICATION = "application"
 IGNORE_WARNINGS = config.get(APPLICATION, "ignore.warnings")
+AIO_RATE_LIMITER_MAX_RETRIES = 10
 case = config.get(APPLICATION, "log.level")
 if case == "info":
 	LOG_LEVEL = logging.INFO
@@ -19,22 +20,23 @@ elif case == "debug":
 	LOG_LEVEL = logging.DEBUG
 else:
 	LOG_LEVEL = logging.DEBUG
-#
-UNKNOWN_COMMAND_MESSAGE = "This command doesn't exist!"
+# messages
 STARTUP_MESSAGE = "FoldoBot started! "
 STOP_MESSAGE = "FoldoBot stopped!"
 VERSION_MESSAGE = " - more info on https://github.com/simon387/FoldoBot/blob/master/changelog.txt"
+ERROR_UNKNOWN_COMMAND_MESSAGE = "This command doesn't exist!"
 ERROR_PARAMETER_NEEDED_MESSAGE = "This command needs a parameter!"
 ERROR_GTTS_MESSAGE = "Error on Google Text-to-Speech!"
-TAUNT_NOT_FOUND_MESSAGE = "Taunt not found!"
-#
+ERROR_MEME_MESSAGE = "Error on getting data from meme-api.com!"
+ERROR_BESTEMMIA_MESSAGE = "Error on getting data from bestemmie.org!"
+ERROR_GIF_MESSAGE = "Error on getting data from api.giphy.com!"
+ERROR_TAUNT_NOT_FOUND_MESSAGE = "Taunt not found!"
+# urls
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
 RANDOM_MEME_URL = "https://meme-api.com/gimme"
 RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
 TS_BOT_WEB_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
 TS_BOT_WEB_URL = "www.simonecelia.it/ts-bot-web"
-#
-AIO_RATE_LIMITER_MAX_RETRIES = 10
 #
 MP3 = ".mp3"
 RB = "rb"
@@ -57,15 +59,15 @@ RANDOM_BESTEMMIA = "bestemmia"
 RANDOM_MEME = "meme"
 RANDOM_GIF = "gif"
 DIPRE_MAYOR = "dipre_mayor"
-#
+# amazon sponsor
 AMAZON_MESSAGE = "+ https://t.me/offertepromozioniscontibaby\n+ https://t.me/scontioffertepromozionicuracorpo\n" + \
                  "+ https://t.me/offertescontipromozionielettro\n+ https://t.me/schedevideooffertepromozioni"
-#
+# mosconi list
 MOSCONI_ARRAY = ["m1", "m11", "m12", "m15", "m16", "m19", "m2", "m20", "m21", "m23", "m25", "m27", "m29", "m3", "m30",
                  "m31", "m33", "m34", "m35", "m36", "m38", "m4", "m41", "m47", "m48", "m49", "m5", "m51", "m52", "m6",
                  "m7", "m8", "m9", "macheoh", "mconfusione", "mcorti", "mcorti2", "mcrescente", "mdiocanecorti",
                  "mdistratto", "mnessuno", "mnonlosoio", "mnotizia", "mosconi", ]
-#
+# daoc list
 DAOC_ARRAY = ["AC1A_01a", "AC1A_02a", "AC1A_02b", "AC1A_02c", "AC1A_02d", "AC1A_03a", "AC1A_03b", "ac1a_04a",
               "AC1A_04b", "AC1A_04c", "ac1a_04d", "AC1B_02a", "AC1B_02b", "AC1B_02c", "AC1B_02d", "adrghit", "adrghit2",
               "adrghit3", "afnbatt", "afnbdie", "afnbhit", "afnbhit2", "afnbhit3", "afncatt", "afncdie", "afnchit",
@@ -560,7 +562,7 @@ DAOC_ARRAY = ["AC1A_01a", "AC1A_02a", "AC1A_02b", "AC1A_02c", "AC1A_02d", "AC1A_
               "xaphan_pain02-01", "xaphan_pain02-02", "xaphan_pain02-03", "xaphan_pain03-01", "xaphan_pain03-02",
               "xaphan_pain03-03", "zomatt", "zombie_moan_01", "zombie_moan_02", "zombie_moan_03", "zombie_moan_04",
               "zombie_moan_05", "zombie_moan_06", "zombie_moan_07", "zombie_moan_08", "zomdie", "zomhit", "zomhit2", ]
-#
+# aoe list
 AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15", "150", "151", "152", "153", "155",
              "156", "157", "158", "159", "16", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169",
              "17", "170", "171", "172", "173", "174", "18", "19", "190", "191", "192", "193", "2", "20", "201", "202",
@@ -590,7 +592,7 @@ AOE_ARRAY = ["11", "111", "119", "1", "12", "10", "13", "103", "14", "109", "15"
              "905", "906", "907", "909", "91", "910", "911", "912", "913", "914", "915", "916", "917", "918", "919",
              "92", "920", "921", "922", "923", "924", "925", "926", "927", "928", "929", "93", "930", "931", "932",
              "933", "934", "935", "94", "95", "96", "97", "98", "99", "999", ]
-#
+# teamspeak list
 TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl", "bocca", "c1", "c2", "c3", "c4",
             "ciao", "venerdi", "vamos",
             "ciuf1", "ciuf2", "ciuf3", "ciuf4", "ciuf5", "ciuf6", "ciuf7", "corona", "d_ginoilsecondino", "d1", "d10",
@@ -621,6 +623,6 @@ TS_ARRAY = ["albe_venerdi", "b1", "b2", "b3", "b4", "b5", "balle", "belta", "bl"
             "15- Airina Bakayoko - HWP 5", "16- Airina Bakayoko - La regola del cretino",
             "17- Airina Bakayoko - Darkage Medley Live", "18- Airina Bakayoko - Io e la mia skald Airina",
             "19- Airina Bakayoko - HWP 6", "20- Airina Bakayoko - BONUS TRACK - Sono tre anni", "tg", "cane", ]
-#
+# dipre list
 DIPRE_ARRAY = ["cosachaquesto", "dipre_intro", "emigrare", "monella", "monellasample", "neanche1kgdivagina",
                "neanche1kgsample", "sononervoso", "stocazzo", "stocazzosample", ]
