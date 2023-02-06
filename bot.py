@@ -42,9 +42,9 @@ async def dipre(update: Update, context: CallbackContext):
 async def random_bestemmia(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_bestemmia')
 	context.args.append(random.choice(c.MOSCONI_ARRAY))
-	response = requests.get(c.RANDOM_BESTEMMIA_URL)
 	# noinspection PyBroadException
 	try:
+		response = requests.get(c.RANDOM_BESTEMMIA_URL)
 		json_object = json.loads(response.text)
 		bestemmia = json_object["bestemmia"]
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=bestemmia)
@@ -56,9 +56,9 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 
 async def random_meme(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_meme')
-	response = requests.get(c.RANDOM_MEME_URL)
 	# noinspection PyBroadException
 	try:
+		response = requests.get(c.RANDOM_MEME_URL)
 		json_object = json.loads(response.text)
 		await context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=json_object["url"])
 	except Exception:
