@@ -69,7 +69,7 @@ telegram.group.id=-ZZZ
 telegram.developer.chat.id=WWW
 [application]
 ignore.warnings=true
-# log.level = info | debug
+# log.level = info | debug | error
 log.level=info
 ```
 
