@@ -72,6 +72,7 @@ telegram.developer.chat.id=WWW
 ignore.warnings=true
 # log.level = info | debug | error
 log.level=info
+send.start.and.stop.message=false
 ```
 
 ## Random util commands
