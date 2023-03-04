@@ -225,6 +225,9 @@ if __name__ == '__main__':
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	if c.IGNORE_WARNINGS == 'true':
 		warnings.filterwarnings("ignore")
-	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
+	try:
+		application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
+	except Exception as ex:
+		log.error(ex)
 	application.add_error_handler(error_handler)
 	application.run_polling(allowed_updates=Update.ALL_TYPES)
