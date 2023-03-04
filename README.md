@@ -20,13 +20,12 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 + python --version 3.10.4
 + pip show python-telegram-bot 20.0a1
 + bot info (group id, ecc): https://api.telegram.org/botXXX/getUpdates
-+ pip install python-telegram-bot[rate-limiter]
++ web client: Telegram web Z is better, dunno why
 
 ## Setup dev
 
 + ```pip install python-telegram-bot --upgrade``` or ```pip install python-telegram-bot -U --pre```
 + ```pip install gtts```
-+ web client: Telegram web Z is better, dunno why
 + ```pip install python-telegram-bot[rate-limiter]```
 
 ## Test / Production
