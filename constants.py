@@ -12,6 +12,7 @@ GIPHY_KEY = config.get(SECRETS, "api.giphy.com.key")
 # app settings
 APPLICATION = "application"
 IGNORE_WARNINGS = config.get(APPLICATION, "ignore.warnings")
+SEND_START_AND_STOP_MESSAGE = config.get(APPLICATION, "send.start.and.stop.message")
 AIO_RATE_LIMITER_MAX_RETRIES = 10
 case = config.get(APPLICATION, "log.level")
 if case == "info":

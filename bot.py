@@ -153,8 +153,9 @@ async def dai_che_e_venerdi(context: CallbackContext):
 async def post_init(app: Application):
 	version = get_version()
 	log.info("Starting FoldoBot, " + version)
-	await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
-	await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
+	if c.SEND_START_AND_STOP_MESSAGE == 'true':
+		await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
+		await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 
 
 async def post_shutdown(app: Application):
