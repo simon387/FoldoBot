@@ -20,7 +20,6 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 + python --version 3.10.4
 + pip show python-telegram-bot 20.0a1
 + bot info (group id, ecc): https://api.telegram.org/botXXX/getUpdates
-+ https://github.com/python-telegram-bot/python-telegram-bot/wiki/
 + pip install python-telegram-bot[rate-limiter]
 
 ## Setup dev
@@ -86,3 +85,4 @@ send.start.and.stop.message=false
 + https://www.pythonanywhere.com/whitelist/
 + https://support.anaconda.com/hc/en-us/requests/
 + https://docs.python-telegram-bot.org/
++ https://github.com/python-telegram-bot/python-telegram-bot/wiki/
