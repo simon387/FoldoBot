@@ -85,3 +85,4 @@ send.start.and.stop.message=false
 + https://github.com/D3vd/Meme_Api
 + https://www.pythonanywhere.com/whitelist/
 + https://support.anaconda.com/hc/en-us/requests/
++ https://docs.python-telegram-bot.org/
