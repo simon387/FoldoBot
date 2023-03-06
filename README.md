@@ -71,6 +71,8 @@ ignore.warnings=true
 # log.level = info | debug | error
 log.level=info
 send.start.and.stop.message=false
+# 1.1 | 2.0
+http.version=1.1
 ```
 
 ## Random util commands
