@@ -211,6 +211,8 @@ if __name__ == '__main__':
 		.post_init(post_init) \
 		.post_shutdown(post_shutdown) \
 		.rate_limiter(AIORateLimiter(max_retries=c.AIO_RATE_LIMITER_MAX_RETRIES)) \
+		.http_version(c.HTTP_VERSION) \
+		.get_updates_http_version(c.HTTP_VERSION) \
 		.build()
 	application.add_handler(CommandHandler(c.DIPRE_MAYOR, dipre))
 	application.add_handler(CommandHandler(c.RANDOM_BESTEMMIA, random_bestemmia))
@@ -227,7 +229,7 @@ if __name__ == '__main__':
 		warnings.filterwarnings("ignore")
 	try:
 		application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
-	except Exception as ex:
-		log.error(ex)
+	except Exception as exception:
+		log.error(exception)
 	application.add_error_handler(error_handler)
 	application.run_polling(allowed_updates=Update.ALL_TYPES)
