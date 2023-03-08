@@ -18,7 +18,7 @@ from telegram.constants import ParseMode
 from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler, Application, AIORateLimiter
 
 import constants as c
-from MyApp import MyApp
+from BotApp import BotApp
 
 log.basicConfig(
 	handlers=[
@@ -207,7 +207,7 @@ def get_version():
 if __name__ == '__main__':
 	application = ApplicationBuilder() \
 		.token(c.TOKEN) \
-		.application_class(MyApp) \
+		.application_class(BotApp) \
 		.post_init(post_init) \
 		.post_shutdown(post_shutdown) \
 		.rate_limiter(AIORateLimiter(max_retries=c.AIO_RATE_LIMITER_MAX_RETRIES)) \
@@ -227,9 +227,6 @@ if __name__ == '__main__':
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	if c.IGNORE_WARNINGS == 'true':
 		warnings.filterwarnings("ignore")
-	try:
-		application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
-	except Exception as exception:
-		log.error(exception)
+	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	application.add_error_handler(error_handler)
 	application.run_polling(allowed_updates=Update.ALL_TYPES)

@@ -13,6 +13,7 @@ Telegram Bot used for my Telegram friend's group; it spams fun things.
 
 + ```pip install python-telegram-bot --upgrade``` or ```pip install python-telegram-bot -U --pre```
 + ```pip install python-telegram-bot[rate-limiter]```
++ ```pip install python-telegram-bot[job-queue]```
 + ```pip install gtts```
 + ```pip install pytz```
 + Create the ```config.properties``` file in the project's directory, and put this content:
