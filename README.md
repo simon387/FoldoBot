@@ -79,6 +79,10 @@ Tested and deployed on https://www.pythonanywhere.com and it works!
 + Run from detached ssh: ```nohup python bot.py &```
 + Show python processes: ```ps -ef | grep python```
 
+## TODOs
+
++ fix run_dayly useless warning
+
 ## Usefull Links
 
 + https://github.com/D3vd/Meme_Api
