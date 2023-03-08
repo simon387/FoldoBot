@@ -3,7 +3,8 @@ from telegram.ext import Application
 import constants as c
 
 
-class MyApp(Application):
+# Override App Class
+class BotApp(Application):
 	async def stop(self):
 		await super().stop()
 		if c.SEND_START_AND_STOP_MESSAGE == 'true':
