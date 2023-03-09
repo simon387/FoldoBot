@@ -81,7 +81,7 @@ Tested and deployed on https://www.pythonanywhere.com and it works!
 
 ## TODOs
 
-+ fix run_dayly useless warning
++ fix run_daily useless warning
 
 ## Usefull Links
 
