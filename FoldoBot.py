@@ -3,6 +3,7 @@ import json
 import logging as log
 import os
 import random
+import signal
 import sys
 import time as time_os
 import traceback
@@ -36,13 +37,12 @@ log.basicConfig(
 
 async def dipre(update: Update, context: CallbackContext):
 	log_bot_event(update, 'dipre')
-	await context.bot.send_video(chat_id=update.effective_chat.id, video=open("assets/dipre.mp4", c.RB))
+	await context.bot.send_video(chat_id=update.effective_chat.id, video="assets/dipre.mp4")
 
 
 async def random_bestemmia(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_bestemmia')
 	context.args.append(random.choice(c.MOSCONI_ARRAY))
-	# noinspection PyBroadException
 	try:
 		response = requests.get(c.RANDOM_BESTEMMIA_URL)
 		json_object = json.loads(response.text)
@@ -57,7 +57,6 @@ async def random_bestemmia(update: Update, context: CallbackContext):
 
 async def random_meme(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_meme')
-	# noinspection PyBroadException
 	try:
 		response = requests.get(c.RANDOM_MEME_URL)
 		json_object = json.loads(response.text)
@@ -69,7 +68,6 @@ async def random_meme(update: Update, context: CallbackContext):
 
 async def random_gif(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_gif')
-	# noinspection PyBroadException
 	try:
 		response = requests.get(c.RANDOM_GIF_URL)
 		json_object = json.loads(response.text)
@@ -128,7 +126,7 @@ async def tts(update: Update, context: CallbackContext, text=''):
 	else:
 		myobj = gTTS(text=text, lang=language, slow=False)
 		myobj.save(c.MP3_TEMP_FILE)
-		await context.bot.send_audio(chat_id=update.effective_chat.id, audio=open(c.MP3_TEMP_FILE, c.RB))
+		await context.bot.send_audio(chat_id=update.effective_chat.id, audio=c.MP3_TEMP_FILE)
 
 
 async def unknown_command(update: Update, context: CallbackContext):
@@ -146,14 +144,24 @@ async def send_version(update: Update, context: CallbackContext):
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=get_version() + c.VERSION_MESSAGE)
 
 
+async def send_shutdown(update: Update, context: CallbackContext):
+	log_bot_event(update, 'send_shutdown')
+	if update.effective_user.id == int(c.TELEGRAM_DEVELOPER_CHAT_ID):
+		if c.SEND_START_AND_STOP_MESSAGE == c.TRUE:
+			await context.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STOP_MESSAGE, parse_mode=ParseMode.HTML)
+		os.kill(os.getpid(), signal.SIGINT)
+	else:
+		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_NO_GRANT_SHUTDOWN)
+
+
 async def dai_che_e_venerdi(context: CallbackContext):
-	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio=open("assets/venerdi.mp3", c.RB))
+	await context.bot.send_audio(chat_id=c.TELEGRAM_GROUP_ID, audio="assets/venerdi.mp3")
 
 
 async def post_init(app: Application):
 	version = get_version()
 	log.info("Starting FoldoBot, " + version)
-	if c.SEND_START_AND_STOP_MESSAGE == 'true':
+	if c.SEND_START_AND_STOP_MESSAGE == c.TRUE:
 		await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 		await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 
@@ -224,9 +232,11 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler([c.TTS_EN, c.TTS_ES, c.TTS_IT], tts))
 	application.add_handler(CommandHandler('amazon', send_amazon))
 	application.add_handler(CommandHandler('version', send_version))
+	application.add_handler(CommandHandler('shutdown', send_shutdown))
 	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
-	if c.IGNORE_WARNINGS == 'true':
+	if c.IGNORE_WARNINGS == c.TRUE:
 		warnings.filterwarnings("ignore")
+	# noinspection PyTypeChecker
 	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
 	application.add_error_handler(error_handler)
 	application.run_polling(allowed_updates=Update.ALL_TYPES)
