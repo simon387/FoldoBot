@@ -28,7 +28,6 @@ else:
 STARTUP_MESSAGE = "FoldoBot started! "
 STOP_MESSAGE = "FoldoBot stopped!"
 VERSION_MESSAGE = " - more info on https://github.com/simon387/FoldoBot/blob/master/changelog.txt"
-ERROR_UNKNOWN_COMMAND_MESSAGE = "This command doesn't exist!"
 ERROR_PARAMETER_NEEDED_MESSAGE = "This command needs a parameter!"
 ERROR_GTTS_MESSAGE = "Error on Google Text-to-Speech!"
 ERROR_MEME_MESSAGE = "Error on getting data from meme-api.com!"
