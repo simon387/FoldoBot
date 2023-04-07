@@ -16,7 +16,7 @@ import requests
 from gtts import gTTS
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, filters, MessageHandler, Application, AIORateLimiter
+from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, Application, AIORateLimiter
 
 import constants as c
 from BotApp import BotApp
@@ -129,11 +129,6 @@ async def tts(update: Update, context: CallbackContext, text=''):
 		await context.bot.send_audio(chat_id=update.effective_chat.id, audio=c.MP3_TEMP_FILE)
 
 
-async def unknown_command(update: Update, context: CallbackContext):
-	log_bot_event(update, 'unknown_command')
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_UNKNOWN_COMMAND_MESSAGE)
-
-
 async def send_amazon(update: Update, context: CallbackContext):
 	log_bot_event(update, 'send_amazon')
 	await context.bot.send_message(chat_id=update.effective_chat.id, text=c.AMAZON_MESSAGE)
@@ -233,7 +228,6 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('amazon', send_amazon))
 	application.add_handler(CommandHandler('version', send_version))
 	application.add_handler(CommandHandler('shutdown', send_shutdown))
-	application.add_handler(MessageHandler(filters.COMMAND, unknown_command))
 	if c.IGNORE_WARNINGS == c.TRUE:
 		warnings.filterwarnings("ignore")
 	# noinspection PyTypeChecker
