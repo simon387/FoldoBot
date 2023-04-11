@@ -142,8 +142,6 @@ async def send_version(update: Update, context: CallbackContext):
 async def send_shutdown(update: Update, context: CallbackContext):
 	log_bot_event(update, 'send_shutdown')
 	if update.effective_user.id == int(c.TELEGRAM_DEVELOPER_CHAT_ID):
-		if c.SEND_START_AND_STOP_MESSAGE == c.TRUE:
-			await context.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STOP_MESSAGE, parse_mode=ParseMode.HTML)
 		os.kill(os.getpid(), signal.SIGINT)
 	else:
 		await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_NO_GRANT_SHUTDOWN)
