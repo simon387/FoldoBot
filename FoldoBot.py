@@ -17,6 +17,7 @@ from gtts import gTTS
 from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import ApplicationBuilder, CallbackContext, CommandHandler, ContextTypes, Application, AIORateLimiter
+from telegram.request import HTTPXRequest
 
 import constants as c
 from BotApp import BotApp
@@ -212,8 +213,8 @@ if __name__ == '__main__':
 		.post_init(post_init) \
 		.post_shutdown(post_shutdown) \
 		.rate_limiter(AIORateLimiter(max_retries=c.AIO_RATE_LIMITER_MAX_RETRIES)) \
-		.http_version(c.HTTP_VERSION) \
-		.get_updates_http_version(c.HTTP_VERSION) \
+		.request(HTTPXRequest(http_version=c.HTTP_VERSION)) \
+		.get_updates_request(HTTPXRequest(http_version=c.HTTP_VERSION)) \
 		.build()
 	application.add_handler(CommandHandler(c.DIPRE_MAYOR, dipre))
 	application.add_handler(CommandHandler(c.RANDOM_BESTEMMIA, random_bestemmia))
