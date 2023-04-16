@@ -25,7 +25,7 @@ from BotApp import BotApp
 log.basicConfig(
 	handlers=[
 		RotatingFileHandler(
-			'FoldoBot.log',
+			'_FoldoBot.log',
 			maxBytes=10240000,
 			backupCount=5
 		),
@@ -104,7 +104,7 @@ async def play(update: Update, context: CallbackContext):
 			await context.bot.send_audio(chat_id=update.effective_chat.id, audio=audio)
 		else:
 			await context.bot.send_message(chat_id=update.effective_chat.id, text=c.ERROR_TAUNT_NOT_FOUND_MESSAGE)
-			log.error("Taunt not found, input text = " + taunt)
+			log.error(f"Taunt not found, input text = {taunt}")
 
 
 async def list_play(update: Update, context: CallbackContext):
@@ -137,7 +137,7 @@ async def send_amazon(update: Update, context: CallbackContext):
 
 async def send_version(update: Update, context: CallbackContext):
 	log_bot_event(update, 'send_version')
-	await context.bot.send_message(chat_id=update.effective_chat.id, text=get_version() + c.VERSION_MESSAGE)
+	await context.bot.send_message(chat_id=update.effective_chat.id, text=f'{get_version()} {c.VERSION_MESSAGE}')
 
 
 async def send_shutdown(update: Update, context: CallbackContext):
@@ -154,21 +154,21 @@ async def dai_che_e_venerdi(context: CallbackContext):
 
 async def post_init(app: Application):
 	version = get_version()
-	log.info("Starting FoldoBot, " + version)
+	log.info(f"Starting FoldoBot, {version}")
 	if c.SEND_START_AND_STOP_MESSAGE == c.TRUE:
 		await app.bot.send_message(chat_id=c.TELEGRAM_GROUP_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 		await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 
 
 async def post_shutdown(app: Application):
-	log.info("Shutting down, bot id=" + str(app.bot.id))
+	log.info(f"Shutting down, bot id={str(app.bot.id)}")
 
 
 def log_bot_event(update: Update, method_name: str):
 	msg = update.message.text
 	user = update.effective_user.first_name
 	uid = update.effective_user.id
-	log.info("[method=" + method_name + '] Got this message from ' + user + "[id=" + str(uid) + "]" + ": " + msg)
+	log.info(f"[method={method_name}] Got this message from {user} [id={str(uid)}]: {msg}")
 
 
 # Log the error and send a telegram message to notify the developer. Attemp to restart the bot too
