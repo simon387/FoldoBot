@@ -38,7 +38,7 @@ ERROR_NO_GRANT_SHUTDOWN = "You can't shutdown the bot!"
 # urls
 RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
 RANDOM_MEME_URL = "https://meme-api.com/gimme"
-RANDOM_GIF_URL = "https://api.giphy.com/v1/gifs/random?api_key=" + GIPHY_KEY + "&rating=pg-13&limit=1"
+RANDOM_GIF_URL = f"https://api.giphy.com/v1/gifs/random?api_key={GIPHY_KEY}&rating=pg-13&limit=1"
 TS_BOT_WEB_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
 TS_BOT_WEB_URL = "www.simonecelia.it/ts-bot-web"
 #
