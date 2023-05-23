@@ -36,9 +36,14 @@ log.basicConfig(
 )
 
 
-async def dipre(update: Update, context: CallbackContext):
+async def send_dipre(update: Update, context: CallbackContext):
 	log_bot_event(update, 'dipre')
 	await context.bot.send_video(chat_id=update.effective_chat.id, video="assets/dipre.mp4")
+
+
+async def send_zelensky(update: Update, context: CallbackContext):
+	log_bot_event(update, 'zelensky')
+	await context.bot.send_video(chat_id=update.effective_chat.id, video="assets/zelensky.mp4")
 
 
 async def random_bestemmia(update: Update, context: CallbackContext):
@@ -216,7 +221,7 @@ if __name__ == '__main__':
 		.request(HTTPXRequest(http_version=c.HTTP_VERSION)) \
 		.get_updates_request(HTTPXRequest(http_version=c.HTTP_VERSION)) \
 		.build()
-	application.add_handler(CommandHandler(c.DIPRE_MAYOR, dipre))
+	application.add_handler(CommandHandler(c.DIPRE_MAYOR, send_dipre))
 	application.add_handler(CommandHandler(c.RANDOM_BESTEMMIA, random_bestemmia))
 	application.add_handler(CommandHandler(c.RANDOM_MEME, random_meme))
 	application.add_handler(CommandHandler(c.RANDOM_GIF, random_gif))
@@ -227,6 +232,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('amazon', send_amazon))
 	application.add_handler(CommandHandler('version', send_version))
 	application.add_handler(CommandHandler('shutdown', send_shutdown))
+	application.add_handler(CommandHandler('zelensky', send_zelensky))
 	if c.IGNORE_WARNINGS == c.TRUE:
 		warnings.filterwarnings("ignore")
 	# noinspection PyTypeChecker
