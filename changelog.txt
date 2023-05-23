@@ -1,3 +1,6 @@
+Version 1.4.6
+- added /zelensky cmd
+
 Version 1.4.5
 - better string operations
 - changed log file name

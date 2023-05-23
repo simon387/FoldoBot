@@ -56,6 +56,7 @@ dipre_mayor - play dipre in a mayor situation
 amazon - show amazon friendly channels
 version - show bot's version
 shutdown - shutdown the bot
+zelensky - zelensky
 ```
 
 ## BotFather creation's infos
