@@ -1,0 +1,58 @@
+import time
+import pickle
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+# Token of your bot (you can obtain it from BotFather)
+BOT_TOKEN = 'YOUR_BOT_TOKEN'
+
+# Group ID where the bot will be active
+GROUP_ID = -123456789
+
+# Time threshold for inactivity (in seconds)
+INACTIVITY_THRESHOLD = 30 * 24 * 60 * 60  # 30 days
+
+# File path to store user activity data
+DATA_FILE = 'activity_data.pickle'
+
+# Load user activity data from file or create an empty dictionary
+try:
+    with open(DATA_FILE, 'rb') as file:
+        last_active_times = pickle.load(file)
+except FileNotFoundError:
+    last_active_times = {}
+
+# Handler for the '/start' command
+def start(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Bot started!')
+
+# Handler for tracking user activity
+def activity(update, context):
+    user_id = update.effective_user.id
+    last_active_times[user_id] = time.time()
+
+# Handler for checking and kicking inactive users
+def check_inactive_users(context):
+    for user_id, last_active_time in last_active_times.copy().items():
+        if time.time() - last_active_time >= INACTIVITY_THRESHOLD:
+            context.bot.kick_chat_member(chat_id=GROUP_ID, user_id=user_id)
+            del last_active_times[user_id]
+
+# Save user activity data to file
+def save_data():
+    with open(DATA_FILE, 'wb') as file:
+        pickle.dump(last_active_times, file)
+
+# Create the bot and add the handlers
+updater = Updater(token=BOT_TOKEN, use_context=True)
+dispatcher = updater.dispatcher
+dispatcher.add_handler(CommandHandler('start', start))
+dispatcher.add_handler(MessageHandler(Filters.all, activity))
+
+# Start checking inactive users periodically (every hour in this example)
+updater.job_queue.run_repeating(check_inactive_users, interval=60*60)
+
+# Save user activity data every day
+updater.job_queue.run_daily(save_data, time=time.time() + 10)
+
+# Start the bot
+updater.start_polling()
