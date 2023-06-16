@@ -236,6 +236,6 @@ if __name__ == '__main__':
 	if c.IGNORE_WARNINGS == c.TRUE:
 		warnings.filterwarnings("ignore")
 	# noinspection PyTypeChecker
-	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET')), days=[5])
+	application.job_queue.run_daily(dai_che_e_venerdi, time=time(tzinfo=pytz.timezone('CET'), hour=6), days=[5])
 	application.add_error_handler(error_handler)
 	application.run_polling(allowed_updates=Update.ALL_TYPES)
