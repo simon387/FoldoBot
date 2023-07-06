@@ -57,6 +57,7 @@ amazon - show amazon friendly channels
 version - show bot's version
 shutdown - shutdown the bot
 zelensky - zelensky
+todobien - todobien?
 ```
 
 ## BotFather creation's infos
