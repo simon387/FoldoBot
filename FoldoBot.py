@@ -46,6 +46,11 @@ async def send_zelensky(update: Update, context: CallbackContext):
 	await context.bot.send_video(chat_id=update.effective_chat.id, video="assets/zelensky.mp4")
 
 
+async def send_todobien(update: Update, context: CallbackContext):
+	log_bot_event(update, 'todobien')
+	await context.bot.send_video(chat_id=update.effective_chat.id, video="assets/todobien.mp4")
+
+
 async def random_bestemmia(update: Update, context: CallbackContext):
 	log_bot_event(update, 'random_bestemmia')
 	context.args.append(random.choice(c.MOSCONI_ARRAY))
@@ -237,6 +242,7 @@ if __name__ == '__main__':
 	application.add_handler(CommandHandler('version', send_version))
 	application.add_handler(CommandHandler('shutdown', send_shutdown))
 	application.add_handler(CommandHandler('zelensky', send_zelensky))
+	application.add_handler(CommandHandler('todobien', send_todobien))
 	if c.IGNORE_WARNINGS == c.TRUE:
 		warnings.filterwarnings("ignore")
 	# noinspection PyTypeChecker
