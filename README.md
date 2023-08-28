@@ -53,7 +53,7 @@ list_play - list all taunts of the bot
 tts_en - play tts in english; e.g: tts_en hi
 tts_it - play tts in italian; e.g: tts_it ciao
 tts_es - play tts in spanish; e.g: tts_es hola
-dipre_mayor - play dipre in a mayor situation
+dipre_major - play dipre in a mayor situation
 amazon - show amazon friendly channels
 version - show bot's version
 shutdown - shutdown the bot

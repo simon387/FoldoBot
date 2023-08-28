@@ -62,7 +62,7 @@ RANDOM_DAOC = "daoc"
 RANDOM_BESTEMMIA = "bestemmia"
 RANDOM_MEME = "meme"
 RANDOM_GIF = "gif"
-DIPRE_MAYOR = "dipre_mayor"
+DIPRE_MAJOR = "dipre_major"
 # amazon sponsor
 AMAZON_MESSAGE = "+ https://t.me/offertepromozioniscontibaby\n+ https://t.me/scontioffertepromozionicuracorpo\n" + \
                  "+ https://t.me/offertescontipromozionielettro\n+ https://t.me/schedevideooffertepromozioni"
