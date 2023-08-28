@@ -233,7 +233,7 @@ if __name__ == '__main__':
 		.request(HTTPXRequest(http_version=c.HTTP_VERSION)) \
 		.get_updates_request(HTTPXRequest(http_version=c.HTTP_VERSION)) \
 		.build()
-	application.add_handler(CommandHandler(c.DIPRE_MAYOR, send_dipre))
+	application.add_handler(CommandHandler(c.DIPRE_MAJOR, send_dipre))
 	application.add_handler(CommandHandler(c.RANDOM_BESTEMMIA, random_bestemmia))
 	application.add_handler(CommandHandler(c.RANDOM_MEME, random_meme))
 	application.add_handler(CommandHandler(c.RANDOM_GIF, random_gif))
