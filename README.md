@@ -59,6 +59,7 @@ version - show bot's version
 shutdown - shutdown the bot
 zelensky - zelensky
 todobien - todobien?
+sivola130 - sto arrivando, merde
 ```
 
 ## BotFather creation's infos
