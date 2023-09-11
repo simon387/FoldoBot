@@ -35,6 +35,9 @@ log.basicConfig(
 	level=c.LOG_LEVEL
 )
 
+if c.LOG_LEVEL > log.INFO:
+	log.getLogger('httpx').setLevel(log.WARNING)
+
 
 async def send_dipre(update: Update, context: CallbackContext):
 	log_bot_event(update, 'dipre')
