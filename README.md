@@ -26,6 +26,8 @@ api.giphy.com.key=YYY
 telegram.group.id=-ZZZ
 telegram.developer.chat.id=WWW
 [application]
+#bestemmie.url=https://bestemmie.org/api/random/
+bestemmie.url=https://www.simonecelia.it/bestemmie/v1/bestemmia.php
 ignore.warnings=true
 # log.level = info | debug | error
 log.level=info

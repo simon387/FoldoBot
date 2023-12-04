@@ -36,7 +36,7 @@ ERROR_GIF_MESSAGE = "Error on getting data from api.giphy.com!"
 ERROR_TAUNT_NOT_FOUND_MESSAGE = "Taunt not found!"
 ERROR_NO_GRANT_SHUTDOWN = "You can't shutdown the bot!"
 # urls
-RANDOM_BESTEMMIA_URL = "https://bestemmie.org/api/random/"
+RANDOM_BESTEMMIA_URL = config.get(APPLICATION, "bestemmie.url")
 RANDOM_MEME_URL = "https://meme-api.com/gimme"
 RANDOM_GIF_URL = f"https://api.giphy.com/v1/gifs/random?api_key={GIPHY_KEY}&rating=pg-13&limit=1"
 TS_BOT_WEB_DATA_URL = "www.simonecelia.it/ts-bot-web/data/"
