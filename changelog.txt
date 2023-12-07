@@ -1,3 +1,6 @@
+Version 1.4.16
+- update license
+
 Version 1.4.15
 - fix bestemmie.org death
 
