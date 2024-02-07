@@ -1,3 +1,6 @@
+Version 1.4.17
+- better error management
+
 Version 1.4.16
 - update license
 
