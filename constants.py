@@ -11,6 +11,7 @@ TELEGRAM_DEVELOPER_CHAT_ID = config.get(SECRETS, "telegram.developer.chat.id")
 GIPHY_KEY = config.get(SECRETS, "api.giphy.com.key")
 # application's settings
 APPLICATION = "application"
+RESTART_FLAG = config.get(APPLICATION, "restart.flag")
 IGNORE_WARNINGS = config.get(APPLICATION, "ignore.warnings")
 SEND_START_AND_STOP_MESSAGE = config.get(APPLICATION, "send.start.and.stop.message")
 HTTP_VERSION = config.get(APPLICATION, "http.version")

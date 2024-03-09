@@ -179,8 +179,9 @@ async def post_init(app: Application):
 		await app.bot.send_message(chat_id=c.TELEGRAM_DEVELOPER_CHAT_ID, text=c.STARTUP_MESSAGE + version, parse_mode=ParseMode.HTML)
 
 
+# noinspection PyUnusedLocal
 async def post_shutdown(app: Application):
-	log.info(f"Shutting down, bot id={str(app.bot.id)}")
+	log.info(f"Shutting down the bot")
 
 
 # v1.0, highest
@@ -198,7 +199,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 	# Log the error before we do anything else, so we can see it even if something breaks.
 	log.error(msg="Exception while handling an update:", exc_info=context.error)
 	# No Network, no send message!
-	if not isinstance(context.error, telegram.error.NetworkError):
+	if not isinstance(context.error, telegram.error.NetworkError) and not isinstance(context.error, telegram.error.TimedOut):
 		# traceback.format_exception returns the usual python message about an exception, but as a
 		# list of strings rather than a single string, so we have to join them together.
 		tb_list = traceback.format_exception(None, context.error, context.error.__traceback__)
@@ -211,8 +212,9 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 		await send_error_message(context, f"<pre>context.user_data = {html.escape(str(context.user_data))}</pre>")
 		await send_error_message(context, f"<pre>{html.escape(tb_string)}</pre>")
 	# Restart the bot
-	time_os.sleep(5.0)
-	os.execl(sys.executable, sys.executable, *sys.argv)
+	if c.RESTART_FLAG == c.TRUE:
+		time_os.sleep(5.0)
+		os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 async def send_error_message(context: ContextTypes.DEFAULT_TYPE, message):
